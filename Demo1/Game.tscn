@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GrassSprite_256.png" type="Texture" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="SegmentShape2D" id=1]
+
+custom_solver_bias = 0.0
+a = Vector2( -320, 100 )
+b = Vector2( 320, 100 )
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 28.0
+
+[node name="Game" type="Node2D" index="0"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="0"]
+
+position = Vector2( 300, 872 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D" index="0"]
+
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 640, 256 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( 120, 70 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Sprite" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.5
+gravity_scale = 2.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/RigidBody2D" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 400, 70 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.2
+gravity_scale = 2.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D" index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="1"]
+
+shape = SubResource( 2 )
+
+
