@@ -15,14 +15,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Demo1"
+config/name="Demo2"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=600
-window/size/height=1000
 window/dpi/allow_hidpi=true
 
 [rendering]
