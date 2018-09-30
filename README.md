@@ -7,7 +7,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 文章链接：
 [Godot3游戏引擎入门之三：移动我们的主角（上）](http://liuqingwen.me/blog/2018/09/25/introduction-of-godot-3-part-4-add-some-cute-animations-part-1/)
-[Godot3游戏引擎入门之三：移动我们的主角（下）](#)
+[Godot3游戏引擎入门之三：移动我们的主角（下）](http://liuqingwen.me/blog/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/)
 
 *本篇讲解到的知识点：*
 
