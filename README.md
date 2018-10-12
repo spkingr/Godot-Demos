@@ -3,6 +3,22 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
+## 4. Introduction of Godot 3 part 5 - base topdown movement
+
+文章链接：
+[Godot3游戏引擎入门之五：上下左右移动动画（上）](http://liuqingwen.me/blog/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/)
+[Godot3游戏引擎入门之五：上下左右移动动画（下）](http://liuqingwen.me/blog/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/)
+
+*本篇讲解到的知识点：*
+
+1. 使用 AnimationPlayer 节点工具创建状态动画
+2. 使用代码控制玩家的上下左右移动功能
+3. 简单的摄像机使用和地图碰撞检测实现
+4. 通过代码实现 RigidBody2D 刚体节点的运动
+
+![Demo4](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo4.gif)
+
+
 ## 3. Introduction of Godot 3 part 4 - add some cute animations
 
 文章链接：
@@ -15,7 +31,6 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 2. 使用 Sprite 节点和 GDScript 脚本代码创建背景动画
 3. 介绍了 Sprite 节点的原点设置：左上角或者居中
 4. 相关 GDScript 脚本知识：`onready/$/position/animation`
-5. 
 
 ![Demo3](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo3.gif)
 
