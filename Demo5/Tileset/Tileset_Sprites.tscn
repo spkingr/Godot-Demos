@@ -1,0 +1,245 @@
+[gd_scene load_steps=49 format=2]
+
+[ext_resource path="res://Assets/sprites/brik_inner_1.jpg" type="Texture" id=1]
+[ext_resource path="res://Assets/sprites/brik_inner_2.jpg" type="Texture" id=2]
+[ext_resource path="res://Assets/sprites/brik_inner_3.jpg" type="Texture" id=3]
+[ext_resource path="res://Assets/sprites/brik_inner_4.jpg" type="Texture" id=4]
+[ext_resource path="res://Assets/sprites/brik_inner_5.jpg" type="Texture" id=5]
+[ext_resource path="res://Assets/sprites/brik_inner_6.jpg" type="Texture" id=6]
+[ext_resource path="res://Assets/sprites/brik_inner_7.jpg" type="Texture" id=7]
+[ext_resource path="res://Assets/sprites/brik_inner_8.jpg" type="Texture" id=8]
+[ext_resource path="res://Assets/sprites/brik_inner_9.jpg" type="Texture" id=9]
+[ext_resource path="res://Assets/sprites/brik_outer_1.jpg" type="Texture" id=10]
+[ext_resource path="res://Assets/sprites/brik_outer_2.jpg" type="Texture" id=11]
+[ext_resource path="res://Assets/sprites/brik_outer_3.jpg" type="Texture" id=12]
+[ext_resource path="res://Assets/sprites/brik_outer_4.jpg" type="Texture" id=13]
+[ext_resource path="res://Assets/sprites/desert.jpg" type="Texture" id=14]
+[ext_resource path="res://Assets/sprites/desert_inner_1.jpg" type="Texture" id=15]
+[ext_resource path="res://Assets/sprites/desert_inner_2.jpg" type="Texture" id=16]
+[ext_resource path="res://Assets/sprites/desert_inner_3.jpg" type="Texture" id=17]
+[ext_resource path="res://Assets/sprites/desert_inner_4.jpg" type="Texture" id=18]
+[ext_resource path="res://Assets/sprites/desert_inner_5.jpg" type="Texture" id=19]
+[ext_resource path="res://Assets/sprites/desert_inner_6.jpg" type="Texture" id=20]
+[ext_resource path="res://Assets/sprites/desert_inner_7.jpg" type="Texture" id=21]
+[ext_resource path="res://Assets/sprites/desert_inner_8.jpg" type="Texture" id=22]
+[ext_resource path="res://Assets/sprites/desert_inner_9.jpg" type="Texture" id=23]
+[ext_resource path="res://Assets/sprites/desert_outer_1.jpg" type="Texture" id=24]
+[ext_resource path="res://Assets/sprites/desert_outer_2.jpg" type="Texture" id=25]
+[ext_resource path="res://Assets/sprites/desert_outer_3.jpg" type="Texture" id=26]
+[ext_resource path="res://Assets/sprites/desert_outer_4.jpg" type="Texture" id=27]
+[ext_resource path="res://Assets/sprites/plank.jpg" type="Texture" id=28]
+[ext_resource path="res://Assets/sprites/plant_1.jpg" type="Texture" id=29]
+[ext_resource path="res://Assets/sprites/plant_2.jpg" type="Texture" id=30]
+[ext_resource path="res://Assets/sprites/plant_3.jpg" type="Texture" id=31]
+[ext_resource path="res://Assets/sprites/plant_4.jpg" type="Texture" id=32]
+[ext_resource path="res://Assets/sprites/plant_die_1.jpg" type="Texture" id=33]
+[ext_resource path="res://Assets/sprites/plant_die_2.png" type="Texture" id=34]
+[ext_resource path="res://Assets/sprites/rock.jpg" type="Texture" id=35]
+[ext_resource path="res://Assets/sprites/rock_inner_1.jpg" type="Texture" id=36]
+[ext_resource path="res://Assets/sprites/rock_inner_2.jpg" type="Texture" id=37]
+[ext_resource path="res://Assets/sprites/rock_inner_3.jpg" type="Texture" id=38]
+[ext_resource path="res://Assets/sprites/rock_inner_4.jpg" type="Texture" id=39]
+[ext_resource path="res://Assets/sprites/rock_inner_5.jpg" type="Texture" id=40]
+[ext_resource path="res://Assets/sprites/rock_inner_6.jpg" type="Texture" id=41]
+[ext_resource path="res://Assets/sprites/rock_inner_7.jpg" type="Texture" id=42]
+[ext_resource path="res://Assets/sprites/rock_inner_8.jpg" type="Texture" id=43]
+[ext_resource path="res://Assets/sprites/rock_inner_9.jpg" type="Texture" id=44]
+[ext_resource path="res://Assets/sprites/rock_outer_1.jpg" type="Texture" id=45]
+[ext_resource path="res://Assets/sprites/rock_outer_2.jpg" type="Texture" id=46]
+[ext_resource path="res://Assets/sprites/rock_outer_3.jpg" type="Texture" id=47]
+[ext_resource path="res://Assets/sprites/rock_outer_4.jpg" type="Texture" id=48]
+
+[node name="Tileset_Sprites" type="Node2D"]
+
+[node name="brik_inner_1" type="Sprite" parent="."]
+position = Vector2( 328, 186 )
+texture = ExtResource( 1 )
+
+[node name="brik_inner_2" type="Sprite" parent="."]
+position = Vector2( 76, 186 )
+texture = ExtResource( 2 )
+
+[node name="brik_inner_3" type="Sprite" parent="."]
+position = Vector2( 76, 152 )
+texture = ExtResource( 3 )
+
+[node name="brik_inner_4" type="Sprite" parent="."]
+position = Vector2( 112, 152 )
+texture = ExtResource( 4 )
+
+[node name="brik_inner_5" type="Sprite" parent="."]
+position = Vector2( 148, 152 )
+texture = ExtResource( 5 )
+
+[node name="brik_inner_6" type="Sprite" parent="."]
+position = Vector2( 220, 152 )
+texture = ExtResource( 6 )
+
+[node name="brik_inner_7" type="Sprite" parent="."]
+position = Vector2( 328, 152 )
+texture = ExtResource( 7 )
+
+[node name="brik_inner_8" type="Sprite" parent="."]
+position = Vector2( 292, 152 )
+texture = ExtResource( 8 )
+
+[node name="brik_inner_9" type="Sprite" parent="."]
+position = Vector2( 256, 152 )
+texture = ExtResource( 9 )
+
+[node name="brik_outer_1" type="Sprite" parent="."]
+position = Vector2( 328, 118 )
+texture = ExtResource( 10 )
+
+[node name="brik_outer_2" type="Sprite" parent="."]
+position = Vector2( 328, 84 )
+texture = ExtResource( 11 )
+
+[node name="brik_outer_3" type="Sprite" parent="."]
+position = Vector2( 328, 50 )
+texture = ExtResource( 12 )
+
+[node name="brik_outer_4" type="Sprite" parent="."]
+position = Vector2( 328, 16 )
+texture = ExtResource( 13 )
+
+[node name="desert" type="Sprite" parent="."]
+position = Vector2( 184, 152 )
+texture = ExtResource( 14 )
+
+[node name="desert_inner_1" type="Sprite" parent="."]
+position = Vector2( 292, 118 )
+texture = ExtResource( 15 )
+
+[node name="desert_inner_2" type="Sprite" parent="."]
+position = Vector2( 292, 84 )
+texture = ExtResource( 16 )
+
+[node name="desert_inner_3" type="Sprite" parent="."]
+position = Vector2( 292, 50 )
+texture = ExtResource( 17 )
+
+[node name="desert_inner_4" type="Sprite" parent="."]
+position = Vector2( 292, 16 )
+texture = ExtResource( 18 )
+
+[node name="desert_inner_5" type="Sprite" parent="."]
+position = Vector2( 256, 118 )
+texture = ExtResource( 19 )
+
+[node name="desert_inner_6" type="Sprite" parent="."]
+position = Vector2( 256, 84 )
+texture = ExtResource( 20 )
+
+[node name="desert_inner_7" type="Sprite" parent="."]
+position = Vector2( 256, 50 )
+texture = ExtResource( 21 )
+
+[node name="desert_inner_8" type="Sprite" parent="."]
+position = Vector2( 256, 16 )
+texture = ExtResource( 22 )
+
+[node name="desert_inner_9" type="Sprite" parent="."]
+position = Vector2( 220, 118 )
+texture = ExtResource( 23 )
+
+[node name="desert_outer_1" type="Sprite" parent="."]
+position = Vector2( 148, 186 )
+texture = ExtResource( 24 )
+
+[node name="desert_outer_2" type="Sprite" parent="."]
+position = Vector2( 184, 186 )
+texture = ExtResource( 25 )
+
+[node name="desert_outer_3" type="Sprite" parent="."]
+position = Vector2( 76, 118 )
+texture = ExtResource( 26 )
+
+[node name="desert_outer_4" type="Sprite" parent="."]
+position = Vector2( 112, 118 )
+texture = ExtResource( 27 )
+
+[node name="plank" type="Sprite" parent="."]
+position = Vector2( 148, 118 )
+texture = ExtResource( 28 )
+
+[node name="plant_1" type="Sprite" parent="."]
+position = Vector2( 184, 118 )
+texture = ExtResource( 29 )
+
+[node name="plant_2" type="Sprite" parent="."]
+position = Vector2( 220, 84 )
+texture = ExtResource( 30 )
+
+[node name="plant_3" type="Sprite" parent="."]
+position = Vector2( 184, 84 )
+texture = ExtResource( 31 )
+
+[node name="plant_4" type="Sprite" parent="."]
+position = Vector2( 148, 84 )
+texture = ExtResource( 32 )
+
+[node name="plant_die_1" type="Sprite" parent="."]
+position = Vector2( 112, 84 )
+texture = ExtResource( 33 )
+
+[node name="plant_die_2" type="Sprite" parent="."]
+position = Vector2( 76, 84 )
+texture = ExtResource( 34 )
+
+[node name="rock" type="Sprite" parent="."]
+position = Vector2( 220, 186 )
+texture = ExtResource( 35 )
+
+[node name="rock_inner_1" type="Sprite" parent="."]
+position = Vector2( 256, 186 )
+texture = ExtResource( 36 )
+
+[node name="rock_inner_2" type="Sprite" parent="."]
+position = Vector2( 220, 50 )
+texture = ExtResource( 37 )
+
+[node name="rock_inner_3" type="Sprite" parent="."]
+position = Vector2( 220, 16 )
+texture = ExtResource( 38 )
+
+[node name="rock_inner_4" type="Sprite" parent="."]
+position = Vector2( 184, 50 )
+texture = ExtResource( 39 )
+
+[node name="rock_inner_5" type="Sprite" parent="."]
+position = Vector2( 184, 16 )
+texture = ExtResource( 40 )
+
+[node name="rock_inner_6" type="Sprite" parent="."]
+position = Vector2( 148, 50 )
+texture = ExtResource( 41 )
+
+[node name="rock_inner_7" type="Sprite" parent="."]
+position = Vector2( 112, 50 )
+texture = ExtResource( 42 )
+
+[node name="rock_inner_8" type="Sprite" parent="."]
+position = Vector2( 76, 50 )
+texture = ExtResource( 43 )
+
+[node name="rock_inner_9" type="Sprite" parent="."]
+position = Vector2( 112, 186 )
+texture = ExtResource( 44 )
+
+[node name="rock_outer_1" type="Sprite" parent="."]
+position = Vector2( 292, 186 )
+texture = ExtResource( 45 )
+
+[node name="rock_outer_2" type="Sprite" parent="."]
+position = Vector2( 148, 16 )
+texture = ExtResource( 46 )
+
+[node name="rock_outer_3" type="Sprite" parent="."]
+position = Vector2( 112, 16 )
+texture = ExtResource( 47 )
+
+[node name="rock_outer_4" type="Sprite" parent="."]
+position = Vector2( 76, 16 )
+texture = ExtResource( 48 )
+
