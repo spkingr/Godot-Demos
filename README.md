@@ -16,6 +16,8 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 源码链接： [https://github.com/spkingr/Godot-Demos/tree/v0.2](https://github.com/spkingr/Godot-Demos/tree/v0.2)
 
+![Demo5](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo5.gif)
+
 ***
 ## 5. Introduction of Godot 3 part 6 - make tile map in godot
 
@@ -29,8 +31,6 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 3. 介绍 Godot 3.1 中 TileMap 的一些新特性
 
 源码链接： [https://github.com/spkingr/Godot-Demos/tree/v0.1](https://github.com/spkingr/Godot-Demos/tree/v0.1)
-
-![Demo5](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo5.gif)
 
 ## 4. Introduction of Godot 3 part 5 - base topdown movement
 
