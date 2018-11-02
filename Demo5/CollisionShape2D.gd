@@ -1,0 +1,2 @@
+extends CollisionShape2D
+

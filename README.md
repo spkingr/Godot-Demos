@@ -3,6 +3,22 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
+## 7. Introduction of Godot 3 part 8 - add collectable elements and sub-scenes
+
+文章链接：
+[Godot3游戏引擎入门之八：添加可收集元素和子场景](http://liuqingwen.me/blog/2018/11/02/introduction-of-godot-3-part-8-add-collectable-elements-and-sub-scenes/)
+
+*本篇讲解到的知识点：*
+
+1. 创建子场景并实例化子场景： SubScene
+2. 连接订阅事件信号，处理信号： Signal
+3. 学习使用 Godot 3.1 动画中的方法调用特性： Call Method Track
+4. Area2D 节点简介，碰撞处理，多轨道动画设计
+
+源码链接： [https://github.com/spkingr/Godot-Demos/tree/v0.3](https://github.com/spkingr/Godot-Demos/tree/v0.3)
+
+![Demo5](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo6.gif)
+
 ## 6. Introduction of Godot 3 part 7 - add collision and move player in map
 
 文章链接：
