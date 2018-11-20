@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/magical.ogg-f331e92332e78ae442d7c240eee0a811.oggstr"
+
+[deps]
+
+source_file="res://Assets/auido/magical.ogg"
+dest_files=[ "res://.import/magical.ogg-f331e92332e78ae442d7c240eee0a811.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -3,6 +3,24 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
+## 9. Come soon, stay tuned...
+
+![Demo6](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo6.gif)
+
+## 8. Introduction of Godot 3 part 9 - add audio effects and UI elements
+
+文章链接：
+[Godot3游戏引擎入门之九：创建UI界面并添加背景音乐](http://liuqingwen.me/blog/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/)
+
+*本篇讲解到的知识点：*
+
+1. 给游戏添加 UI 控件元素，使用 CanvasLayer 节点
+2. 创建独立的游戏主界面，使用按键切换游戏场景
+3. 添加背景音乐和其他声音效果及动画、代码控制
+4. 其他小知识点：分组、代码中信号连接、字体资源等
+
+![Demo5-3](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo5-3.gif)
+
 ## 7. Introduction of Godot 3 part 8 - add collectable elements and sub-scenes
 
 文章链接：
@@ -17,7 +35,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 源码链接： [https://github.com/spkingr/Godot-Demos/tree/v0.3](https://github.com/spkingr/Godot-Demos/tree/v0.3)
 
-![Demo5](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo6.gif)
+![Demo5-2](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo5-2.gif)
 
 ## 6. Introduction of Godot 3 part 7 - add collision and move player in map
 
@@ -32,7 +50,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 源码链接： [https://github.com/spkingr/Godot-Demos/tree/v0.2](https://github.com/spkingr/Godot-Demos/tree/v0.2)
 
-![Demo5](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo5.gif)
+![Demo5-1](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo5-1.gif)
 
 ***
 ## 5. Introduction of Godot 3 part 6 - make tile map in godot

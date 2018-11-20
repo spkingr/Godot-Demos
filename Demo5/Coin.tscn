@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Coin.gd" type="Script" id=1]
 [ext_resource path="res://Assets/coin_red.png" type="Texture" id=2]
+[ext_resource path="res://Assets/auido/magical.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -88,6 +89,20 @@ tracks/5/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/6/type = "audio"
+tracks/6/path = NodePath("AudioStreamPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=3]
 
@@ -107,7 +122,9 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[node name="Coin" type="Area2D"]
+[node name="Coin" type="Area2D" groups=[
+"coin",
+]]
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -120,11 +137,9 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 5
-_sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-_sections_unfolded = [ "shape" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("..")
@@ -135,5 +150,14 @@ playback_speed = 1.0
 anims/disappear = SubResource( 2 )
 anims/rotate = SubResource( 3 )
 blend_times = [  ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = null
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]

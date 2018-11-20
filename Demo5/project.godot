@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Demo5"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://StartMenu.tscn"
 config/icon="res://icon.png"
 
 [display]

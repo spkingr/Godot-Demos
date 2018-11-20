@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://Items/Coin.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Items/Power.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/grass.png" type="Texture" id=4]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/Cactus.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Hit.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Level.wav" type="AudioStream" id=9]
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 383.333, 129.163, 0, 0, 0, 0, 428.051, 253.594, 0, 0, 0, 0, 348.418, 334.423, 0, 0, 0, 0, 423.261, 434.413, 0, 0, 0, 0, 340.635, 581.104, 0, 0, 0, 0, 238.849, 616.429, 0, 0, 0, 0, 99.942, 569.129, 0, 0, 0, 0, 247.83, 528.415, 0, 0, 0, 0, 293.334, 430.82, 0, 0, 0, 0, 83.776, 432.018, 0, 0, 0, 0, 167.599, 376.335, 0, 0, 0, 0, 251.423, 287.722, 0, 0, 0, 0, 293.334, 388.31, 0, 0, 0, 0, 317.883, 253.594, 0, 0, 0, 0, 210.709, 169.77, 0, 0, 0, 0, 258.845, 107.074, 0, 0, 0, 0, 318.581, 159.152, 0, 0, 0, 0, 383.333, 129.163 )
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+coinScene = ExtResource( 2 )
+powerScene = ExtResource( 3 )
+minPlayerDist = 80
+minObstacleDist = 120
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 480, 720 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="UI" parent="HUD" instance=ExtResource( 5 )]
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 100, 218 )
+
+[node name="CactusPoints" type="Path2D" parent="."]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+curve = SubResource( 1 )
+
+[node name="Cactus" parent="CactusPoints" instance=ExtResource( 7 )]
+position = Vector2( 210.766, 171.777 )
+
+[node name="CoinContainer" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CountTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="PowerTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+mix_target = 0
+bus = "Master"
+
+[node name="LevelUpAuido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="start_game" from="HUD/UI" to="." method="_on_UI_start_game"]
+[connection signal="coin_collected" from="Player" to="." method="_on_Player_coin_collected"]
+[connection signal="game_over" from="Player" to="." method="_on_Player_game_over"]
+[connection signal="power_collected" from="Player" to="." method="_on_Player_power_collected"]
+[connection signal="timeout" from="CountTimer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]

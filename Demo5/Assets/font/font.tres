@@ -1,0 +1,13 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Geo-Regular.ttf" type="DynamicFontData" id=1]
+
+[resource]
+
+size = 32
+outline_size = 1
+outline_color = Color( 0.278431, 0.654902, 0.988235, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 1 )
+
