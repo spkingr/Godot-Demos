@@ -1,9 +1,22 @@
 # Godot-Demos
+
 My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
-## 9. Come soon, stay tuned...
+
+## 9. Introduction of Godot 3 part 10 - introduce some node types and make a new game
+
+文章链接：
+[Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）](http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/)
+[Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）](http://liuqingwen.me/blog/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/)
+[Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（下）](http://liuqingwen.me/blog/2018/12/06/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-3/)
+
+*本篇讲解到的知识点：*
+
+1. 学习了一些新的 Godot 节点，以及一些新的关键词
+2. 探讨了一些基本的游戏开发规则，包括编写代码的规范
+3. 编写实现游戏中相关逻辑代码，完成我们第一个完整的小游戏
 
 ![Demo6](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo6.gif)
 

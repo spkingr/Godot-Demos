@@ -1,7 +1,7 @@
 extends Area2D
 
 export var playerName = 'Player'
-export var power = 2 # 能量蕴藏的间参数
+export var power = 2 # 能量蕴藏的时间参数
 
 onready var _collisionShape = $CollisionShape2D
 onready var _sprite = $Sprite
