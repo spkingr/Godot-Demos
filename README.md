@@ -5,6 +5,10 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
 
+## 10. Coming soon, stay tuned...
+
+![Demo7](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo7.gif)
+
 ## 9. Introduction of Godot 3 part 10 - introduce some node types and make a new game
 
 文章链接：

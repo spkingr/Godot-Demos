@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Bullet/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://FX/Explosion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Images/player_64.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Audio/weapon_player.wav" type="AudioStream" id=5]
+
+[sub_resource type="Gradient" id=1]
+
+offsets = PoolRealArray( 0.00554529, 0.68207, 1 )
+colors = PoolColorArray( 1, 0.448639, 0.207031, 1, 0.839844, 0.137403, 0, 1, 1, 0.0761719, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.999032, 0 ), 0.0153275, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+render_priority = -1
+flag_disable_z = true
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+angular_velocity = 1.05
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+points = PoolVector2Array( 4, -27, 18, 20, 4, 26, -4, 26, -18, 20, -4, -27 )
+
+[node name="Player" type="Area2D" groups=[
+"player",
+]]
+script = ExtResource( 1 )
+bulletScene = ExtResource( 2 )
+explosionScene = ExtResource( 3 )
+
+[node name="FlareParticles" type="Particles2D" parent="."]
+position = Vector2( 0, -4.64686 )
+rotation = 1.5708
+amount = 25
+lifetime = 0.15
+process_material = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -31.8095 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -31.8095 )
+shape = SubResource( 6 )
+
+[node name="ShootPoint" type="Position2D" parent="."]
+position = Vector2( 0, -66.8095 )
+
+[node name="FireRateTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]

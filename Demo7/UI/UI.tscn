@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/UI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Images/button_start.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/button_pressed.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 64
+font_data = ExtResource( 2 )
+
+[node name="UI" type="Control"]
+pause_mode = 2
+margin_right = 600.0
+margin_bottom = 1000.0
+script = ExtResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 36.0
+
+[node name="ScoreLabel" type="Label" parent="HBoxContainer"]
+margin_right = 293.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Score: 0"
+
+[node name="WaveLabel" type="Label" parent="HBoxContainer"]
+margin_left = 297.0
+margin_right = 600.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "Current Wave: 0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -202.5
+margin_top = -86.5
+margin_right = 202.5
+margin_bottom = 86.5
+custom_constants/separation = 20
+
+[node name="MessageLabel" type="Label" parent="VBoxContainer"]
+visible = false
+margin_right = 405.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.858824, 0.109804, 0.462745, 1 )
+text = "Game Over!"
+align = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 405.0
+margin_bottom = 81.0
+
+[node name="StartButton" type="TextureButton" parent="VBoxContainer/CenterContainer"]
+margin_left = 102.0
+margin_right = 302.0
+margin_bottom = 81.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+stretch_mode = 3
+
+[connection signal="pressed" from="VBoxContainer/CenterContainer/StartButton" to="." method="_on_StartButton_pressed"]

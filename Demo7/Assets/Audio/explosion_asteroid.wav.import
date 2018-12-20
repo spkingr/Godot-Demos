@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explosion_asteroid.wav-b9d10b4e154acce6d069b16665dede4f.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/explosion_asteroid.wav"
+dest_files=[ "res://.import/explosion_asteroid.wav-b9d10b4e154acce6d069b16665dede4f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

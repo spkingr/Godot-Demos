@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://FX/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Audio/explosion_player.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Audio/explosion_asteroid.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/explosion_enemy.wav" type="AudioStream" id=4]
+
+[sub_resource type="Gradient" id=1]
+
+colors = PoolColorArray( 0.816406, 0.763338, 0.720734, 1, 0.972656, 0.206149, 0.148178, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+
+_data = [ Vector2( 0, 0.126 ), 0.0, 0.362345, 0, 0, Vector2( 1, 0.9334 ), -0.34218, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.25
+angular_velocity = 2.5052
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 6.0
+scale_random = 0.8
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[node name="Explosion" type="Particles2D"]
+emitting = false
+amount = 100
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.95
+process_material = SubResource( 5 )
+script = ExtResource( 1 )
+playerAudio = ExtResource( 2 )
+rockAudio = ExtResource( 3 )
+alienAudio = ExtResource( 4 )
+
+[node name="LifeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]

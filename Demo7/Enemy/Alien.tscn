@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Enemy/Alien.gd" type="Script" id=1]
+[ext_resource path="res://Bullet/EnemyBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://FX/Explosion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Images/enemy_64.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Audio/weapon_enemy.wav" type="AudioStream" id=5]
+
+[sub_resource type="Gradient" id=1]
+
+offsets = PoolRealArray( 0.00961538, 1 )
+colors = PoolColorArray( 0.854462, 0.163818, 0.953125, 1, 0.734375, 0.735352, 0.235542, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+
+_data = [ Vector2( 0, 0.2646 ), 0.0, -0.141412, 0, 0, Vector2( 0.459805, 1 ), 2.74711, -2.23334, 0, 0, Vector2( 1, 0.2536 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+flag_disable_z = true
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 60.0
+angular_velocity = 4.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 6.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="CircleShape2D" id=6]
+
+radius = 25.0
+
+[node name="Alien" type="Area2D" groups=[
+"enemy",
+]]
+script = ExtResource( 1 )
+bulletScene = ExtResource( 2 )
+explosionScene = ExtResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, -16.3424 )
+rotation = -1.5708
+amount = 20
+lifetime = 0.25
+process_material = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+scale = Vector2( 4, 4 )
+
+[node name="ShootPoint" type="Position2D" parent="."]
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="area_entered" from="." to="." method="_on_Alien_area_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
