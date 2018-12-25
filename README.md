@@ -5,16 +5,29 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
 
-## 10. Coming soon, stay tuned...
+## 10. Introduction of Godot 3 part 11 - introduce the particles system and make a shooter game
+
+文章链接：
+
+- [Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上）](http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/)
+- [Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下）](http://liuqingwen.me/blog/2018/12/25/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-2/)
+
+*本篇讲解到的知识点：*
+
+1. Godot 中自带粒子系统的相关参数说明
+2. 游戏中应用到的其他几个有用的节点
+3. 太空射击游戏的所有场景构造及其关键点
+4. 游戏代码逻辑的核心部分解析
 
 ![Demo7](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo7.gif)
 
 ## 9. Introduction of Godot 3 part 10 - introduce some node types and make a new game
 
 文章链接：
-[Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）](http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/)
-[Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）](http://liuqingwen.me/blog/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/)
-[Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（下）](http://liuqingwen.me/blog/2018/12/06/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-3/)
+
+- [Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）](http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/)
+- [Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）](http://liuqingwen.me/blog/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/)
+- [Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（下）](http://liuqingwen.me/blog/2018/12/06/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-3/)
 
 *本篇讲解到的知识点：*
 

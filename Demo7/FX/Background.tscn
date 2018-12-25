@@ -31,7 +31,6 @@ color_ramp = SubResource( 2 )
 script = ExtResource( 1 )
 
 [node name="Sky" type="ParallaxLayer" parent="."]
-editor/display_folded = true
 motion_scale = Vector2( 0, 1 )
 motion_mirroring = Vector2( 0, 1200 )
 
@@ -40,7 +39,6 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Star" type="ParallaxLayer" parent="."]
-editor/display_folded = true
 motion_scale = Vector2( 0, 0.5 )
 motion_mirroring = Vector2( 0, 1200 )
 
