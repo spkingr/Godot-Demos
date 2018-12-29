@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/font.tres" type="DynamicFont" id=1]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+margin_left = 100.0
+margin_top = 116.0
+margin_right = 923.0
+margin_bottom = 484.0
+custom_fonts/font = ExtResource( 1 )
+text = "No main scene in this Demo, 
+please select and open the scenes in 
+project direcotries, and just press <F6> 
+to start!
+If the demo scenes active as unexpected, 
+try to change the [exported] parameters, 
+then save and run agian."
+align = 1
+

@@ -4,6 +4,9 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
+## 11. Coming soon, stay tuned...
+
+![Demo8](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo8.gif)
 
 ## 10. Introduction of Godot 3 part 11 - introduce the particles system and make a shooter game
 

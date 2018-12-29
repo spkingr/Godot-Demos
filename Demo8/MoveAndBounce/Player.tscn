@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://MoveAndBounce/Player.gd" type="Script" id=1]
+[ext_resource path="res://MoveAndBounce/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://godot.png" type="Texture" id=3]
+[ext_resource path="res://Debug/DebugDraw.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+extents = Vector2( 30.9117, 30.4451 )
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 510.991, 319.519 )
+collision_mask = 16
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+bulletScene = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="DebugDraw" parent="." instance=ExtResource( 4 )]
+
