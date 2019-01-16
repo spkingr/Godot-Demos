@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound_magical.wav-0c8fe0ba677221a7419785fe3f5c1519.sample"
+
+[deps]
+
+source_file="res://Assets/Auido/sound_magical.wav"
+dest_files=[ "res://.import/sound_magical.wav-0c8fe0ba677221a7419785fe3f5c1519.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

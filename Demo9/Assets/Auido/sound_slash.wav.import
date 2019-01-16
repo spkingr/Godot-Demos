@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound_slash.wav-355a9d7d7fa83360d83869bb4de8504a.sample"
+
+[deps]
+
+source_file="res://Assets/Auido/sound_slash.wav"
+dest_files=[ "res://.import/sound_slash.wav-355a9d7d7fa83360d83869bb4de8504a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

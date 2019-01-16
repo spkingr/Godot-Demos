@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound_attack.wav-43046370840c46de39880c1f3a2a7142.sample"
+
+[deps]
+
+source_file="res://Assets/Auido/sound_attack.wav"
+dest_files=[ "res://.import/sound_attack.wav-43046370840c46de39880c1f3a2a7142.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

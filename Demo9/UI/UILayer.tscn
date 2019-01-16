@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Levels/UILayer.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/heart.png" type="Texture" id=2]
+
+[node name="UILayer" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="TextureRect1" type="TextureRect" parent="HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 57.0
+texture = ExtResource( 2 )
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 57.0
+texture = ExtResource( 2 )
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
+margin_left = 136.0
+margin_right = 200.0
+margin_bottom = 57.0
+texture = ExtResource( 2 )
+

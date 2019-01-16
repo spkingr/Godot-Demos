@@ -4,6 +4,11 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
+## Coming soon, stay tuned...
+
+![Demo9](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo9.gif)
+
+***
 ## Demo8: Introduction of Godot 3 part 12 - talk about collision and move_and_collide vs move_and_slide in KinematicBody2D
 
 文章链接：[Godot3游戏引擎入门之十二：Godot碰撞理论以及KinematicBody2D的两个方法](http://liuqingwen.me/blog/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/)

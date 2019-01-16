@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound_shoot.wav-d7184a449507ed30e41061b2ccb642d6.sample"
+
+[deps]
+
+source_file="res://Assets/Auido/sound_shoot.wav"
+dest_files=[ "res://.import/sound_shoot.wav-d7184a449507ed30e41061b2ccb642d6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
