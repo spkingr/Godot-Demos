@@ -8,10 +8,11 @@
 [ext_resource path="res://Items/BoxDoor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Player/Swoosh.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Enemies/NakeEnemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Enemies/NakedEnemy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Enemies/SnakeEnemy.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Enemies/SoldierEnemy.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Auido/music.ogg" type="AudioStream" id=12]
+
 
 [sub_resource type="SegmentShape2D" id=1]
 
@@ -113,7 +114,6 @@ collision_mask = 0
 slashScene = ExtResource( 8 )
 
 [node name="Enemies" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="NakeEnemy1" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 328.362, 350.361 )

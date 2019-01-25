@@ -26,7 +26,7 @@ var _audios = {'run': preload('res://Assets/Auido/sound_walk.wav'),
 				'gameover': preload('res://Assets/Auido/sound_gameover.wav')}
 
 var _gravity = 0.0                  # 重力加速度，计算获得
-var _runSpeed = 0.0                 # 水平移动速度，计算获得
+var _moveSpeed = 0.0                 # 水平移动速度，计算获得
 var _maxJumpSpeed = 0.0             # 最大跳跃度，计算获得
 var _minJumpSpeed = 0.0             # 最小跳跃速度，计算获得
 var _maxJumpHeight = 4.25 * UNIT    # 最大跳跃高度
@@ -57,12 +57,12 @@ func _get_isDead():
 # 计算所有应该计算的数值
 func _ready():
 	_gravity = 2 * _maxJumpHeight / (_jumpDuration / 2 * _jumpDuration / 2)
-	_runSpeed = _maxRunWidth / _jumpDuration
+	_moveSpeed = _maxRunWidth / _jumpDuration
 	_maxJumpSpeed = - _gravity * _jumpDuration / 2
 	_minJumpSpeed = - sqrt(2 * _gravity * _minJumpHeight)
 	_secondJumpSpeed = - sqrt(2 * _gravity * _secondJumpHeight)
 	
-	_climbSpeed = _runSpeed * 0.75
+	_climbSpeed = _moveSpeed * 0.75
 	
 	self.emit_signal('health_update', 3)
 
@@ -115,7 +115,7 @@ func _physics_process(delta):
 	
 	# 水平移动控制
 	var horizontal = int(Input.is_action_pressed('move_right')) - int(Input.is_action_pressed('move_left'))
-	velocity.x = lerp(velocity.x, horizontal * _runSpeed, _getRunWeight())
+	velocity.x = lerp(velocity.x, horizontal * _moveSpeed, _getRunWeight())
 
 	velocity = self.move_and_slide(velocity, FLOOR_NORMAL)
 	if _isSecondJumping && self.is_on_floor():
@@ -246,7 +246,7 @@ func attacked():
 		_die()
 	else:
 		velocity.y = _secondJumpSpeed
-		velocity.x = _runSpeed * (1 if _sprite.flip_h else -1)
+		velocity.x = _moveSpeed * (1 if _sprite.flip_h else -1)
 		_screenShake.start(_camera)
 		
 		# 动画

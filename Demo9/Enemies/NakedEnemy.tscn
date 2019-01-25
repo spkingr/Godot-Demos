@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Enemies/NakeEnemy.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/NakedEnemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/characters.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Auido/sound_attack.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Auido/sound_death.wav" type="AudioStream" id=4]
