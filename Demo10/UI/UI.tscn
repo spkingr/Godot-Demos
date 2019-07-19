@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/UI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/images/bar_overlay_200.png" type="Texture" id=2]
+[ext_resource path="res://Assets/images/bar_green_200.png" type="Texture" id=3]
+[ext_resource path="res://Resources/font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/images/player_small.png" type="Texture" id=5]
+[ext_resource path="res://Assets/images/close.png" type="Texture" id=6]
+
+[node name="UI" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+redBar = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+margin_bottom = 28.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 790.0
+margin_bottom = 51.0
+
+[node name="HealthBar" type="TextureProgress" parent="MarginContainer/CenterContainer"]
+margin_left = 290.0
+margin_top = 7.0
+margin_right = 490.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+value = 60.0
+texture_over = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 790.0
+margin_bottom = 51.0
+custom_constants/separation = 10
+
+[node name="LabelScore" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_top = 4.0
+margin_right = 636.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Score: 0"
+
+[node name="Life1" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+margin_left = 646.0
+margin_right = 684.0
+margin_bottom = 41.0
+texture = ExtResource( 5 )
+
+[node name="Life2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+margin_left = 694.0
+margin_right = 732.0
+margin_bottom = 41.0
+texture = ExtResource( 5 )
+
+[node name="Life3" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+margin_left = 742.0
+margin_right = 780.0
+margin_bottom = 41.0
+texture = ExtResource( 5 )
+
+[node name="ButtonStart" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -30.0
+margin_right = 120.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 240, 60 )
+custom_fonts/font = ExtResource( 4 )
+text = "Start"
+
+[node name="LabelMessage" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+
+[node name="NoticePanel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.752941 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -180.0
+
+[node name="Label" type="Label" parent="NoticePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+text = "Notice: in the game the space ship cannot rotate for the bug in Godot 3.1, but you can test it with Godot 3.2 if you want. Or you can change the source code in Player.gd"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="TextureButton" type="TextureButton" parent="NoticePanel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -64.0
+texture_normal = ExtResource( 6 )
+[connection signal="pressed" from="ButtonStart" to="." method="_on_ButtonStart_pressed"]
+[connection signal="pressed" from="NoticePanel/TextureButton" to="." method="_on_TextureButton_pressed"]

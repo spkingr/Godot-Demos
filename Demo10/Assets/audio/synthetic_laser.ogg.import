@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/synthetic_laser.ogg-9a8d1986c14e97513329d9cbb0e56268.oggstr"
+
+[deps]
+
+source_file="res://Assets/audio/synthetic_laser.ogg"
+dest_files=[ "res://.import/synthetic_laser.ogg-9a8d1986c14e97513329d9cbb0e56268.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

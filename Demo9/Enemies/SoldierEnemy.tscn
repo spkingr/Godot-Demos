@@ -6,7 +6,6 @@
 [ext_resource path="res://Assets/Auido/sound_death.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=1]
-
 resource_name = "die"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -86,7 +85,6 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-
 resource_name = "idle"
 length = 0.1
 tracks/0/type = "value"
@@ -115,7 +113,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-
 resource_name = "shoot"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -131,7 +128,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-
 resource_name = "walk"
 length = 0.8
 loop = true
@@ -149,7 +145,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
-
 extents = Vector2( 8, 12 )
 
 [node name="SoldierEnemy" type="KinematicBody2D" groups=[
@@ -184,7 +179,6 @@ rect = Rect2( -8, -6, 16, 18 )
 [node name="NextShootTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
-
 [connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
 [connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
 [connection signal="timeout" from="NextShootTimer" to="." method="_on_NextShootTimer_timeout"]

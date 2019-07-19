@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/synthetic_thunder_short.wav-bbd0c1ef10a4eecf12e1c6d0f142e892.sample"
+
+[deps]
+
+source_file="res://Assets/audio/synthetic_thunder_short.wav"
+dest_files=[ "res://.import/synthetic_thunder_short.wav-bbd0c1ef10a4eecf12e1c6d0f142e892.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

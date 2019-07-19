@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/swoosh.png-86c36386789ccd32a53e86184a626e6d.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

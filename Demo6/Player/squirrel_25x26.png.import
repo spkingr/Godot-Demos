@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/squirrel_25x26.png-d4cc734c953929e557c021cfa142c8bb.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

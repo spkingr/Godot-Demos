@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/button_start.png-7747094725e079f11a1e5cf988341fd1.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

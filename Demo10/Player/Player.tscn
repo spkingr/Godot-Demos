@@ -1,0 +1,145 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/Laser.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/images/player_ship.png" type="Texture" id=3]
+[ext_resource path="res://Assets/audio/synthetic_laser.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Assets/audio/flight_sound.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/audio/synthetic_thunder_short.wav" type="AudioStream" id=6]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.960938, 0.685246, 0.502644, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 5, 1 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 400.0
+angular_velocity = 1.05
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 8.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 32.0
+
+[sub_resource type="Animation" id=7]
+resource_name = "invulnerable"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.25098 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.172185, 0.422185, 0.619205, 0.769868, 0.922185, 0.993378 )
+colors = PoolColorArray( 0.34375, 0.310697, 0.310697, 1, 0.21875, 0.194167, 0.172476, 1, 0.9375, 0.546725, 0.201923, 1, 0.976563, 0.335693, 0.1878, 1, 0.474168, 0.0436043, 0.0376589, 1, 0.458571, 0.0345367, 0.0329979, 1, 0.454902, 0.0313726, 0.0313726, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.994196, 0.2712 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+angular_velocity = 1.23309e+033
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 150.0
+damping_random = 0.8
+scale = 20.0
+scale_random = 0.8
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 9 )
+
+[node name="Player" type="RigidBody2D" groups=[
+"player",
+]]
+collision_mask = 2
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 1.0
+angular_damp = 5.0
+script = ExtResource( 1 )
+bulletScene = ExtResource( 2 )
+
+[node name="ExhaustParticles2D" type="Particles2D" parent="."]
+position = Vector2( -32, 0 )
+rotation = 3.14159
+emitting = false
+amount = 25
+lifetime = 0.15
+process_material = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 39.115, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/invulnerable = SubResource( 7 )
+
+[node name="Explosion" type="Particles2D" parent="."]
+emitting = false
+amount = 100
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.75
+process_material = SubResource( 12 )
+
+[node name="ShootAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="EngineAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="ExplosionAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 5.0
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_InvulnerabilityTimer_timeout"]

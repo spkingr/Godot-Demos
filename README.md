@@ -4,7 +4,27 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
-## Coming soon, stay tuned...
+## Demo10: coming soon, stay tuned!
+
+![Demo10](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo10.gif)
+
+***
+## Demo9: Introduction of Godot 3 part 13 - The player jump implementation and make a platform game
+
+文章链接：
+
+- [Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（上）](http://liuqingwen.me/blog/2019/01/17/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-1/)
+- [Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（下）](http://liuqingwen.me/blog/2019/01/26/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-2/)
+
+*本篇讲解到的知识点：*
+
+1. 重力加速度知识和简单的跳跃实现方法
+2. 二次跳跃的实现
+3. 精确高度的跳跃实现
+4. 游戏场景结构与主要代码
+5. 三种敌人的行为和实现
+6. 其他的一些效果介绍
+7. 问题和总结
 
 ![Demo9](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo9.gif)
 

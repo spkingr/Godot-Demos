@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Enemy/Rock.gd" type="Script" id=1]
+[ext_resource path="res://Assets/images/rock.png" type="Texture" id=2]
+[ext_resource path="res://Assets/audio/synthetic_thunder_short.wav" type="AudioStream" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.213576, 0.586093, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.925781, 0.864304, 0.462891, 1, 0.957031, 0.34471, 0.224534, 1, 0.714844, 0.624114, 0.624114, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+angular_velocity = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -50.0
+damping = 10.0
+scale = 10.0
+scale_random = 0.75
+color_ramp = SubResource( 3 )
+
+[node name="Rock" type="RigidBody2D" groups=[
+"rock",
+]]
+collision_layer = 2
+collision_mask = 7
+physics_material_override = SubResource( 1 )
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Explosion" type="Particles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+randomness = 0.75
+process_material = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+[connection signal="body_entered" from="." to="." method="_on_Rock_body_entered"]

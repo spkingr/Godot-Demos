@@ -62,7 +62,7 @@ func _physics_process(delta):
 func _shoot():
 	_isShooting = true
 	for i in range(shootCount):
-		# 死亡后能射击
+		# 死亡后不能射击
 		if _isDead:
 			return
 		

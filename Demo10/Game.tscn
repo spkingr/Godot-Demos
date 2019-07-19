@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://Enemy/Rock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/images/bar_red_200.png" type="Texture" id=4]
+[ext_resource path="res://Assets/images/space_background.png" type="Texture" id=5]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/audio/Funky-Gameplay_Looping.ogg" type="AudioStream" id=7]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 800, 600, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 590, 0, 0, 0, 0, 0, 0 )
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+RockScene = ExtResource( 2 )
+
+[node name="UI" parent="." instance=ExtResource( 3 )]
+redBar = ExtResource( 4 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( -170, -30 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 400, 400 )
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="RandomPoint" type="PathFollow2D" parent="Path2D"]
+
+[node name="Rocks" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+[connection signal="start_game" from="UI" to="." method="startGame"]
+[connection signal="game_over" from="Player" to="." method="gameOver"]
+[connection signal="health_updated" from="Player" to="UI" method="updateHealth"]
+[connection signal="lifes_updated" from="Player" to="UI" method="updateLifes"]
