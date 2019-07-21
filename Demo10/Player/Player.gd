@@ -51,6 +51,8 @@ func _set_lifes(value):
 func _ready():
 	# 设置初始状态，这里有一个 Bug 导致飞船不能正常旋转，可以改为 ALIVE 进行测试
 	_changeState(states.INIT) # Test with [ALIVE], Shoudl be [INIT] in version 3.2
+	yield(self.get_tree().create_timer(3), 'timeout')
+	_changeState(states.ALIVE)
 
 
 func _unhandled_input(event):
@@ -91,7 +93,7 @@ func _integrate_forces(state):
 	state.apply_central_impulse(force)
 	state.apply_torque_impulse(torque)
 	
-	# 设置飞船的位置，origin为飞船位置，xform.x为飞船主轴转向，不能直接设置position是一个Bug导致
+	# 设置飞船的位置，origin为飞船位置，xform.x为飞船主轴转向，不要直接设置position
 	var xform = state.transform
 	if _needReset:
 		xform.origin = _resetPosition
@@ -107,6 +109,8 @@ func _integrate_forces(state):
 		xform.origin.y = 0
 	elif xform.origin.y < 0:
 		xform.origin.y = _screenSize.y
+	
+    # 更新状态
 	state.transform = xform
 
 

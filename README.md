@@ -4,7 +4,17 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
-## Demo10: coming soon, stay tuned!
+## Demo10: Introduction of Godot 3 part 14 - Make a game with RigidBody2D node and the FSM introduction
+
+文章链接：[Godot3游戏引擎入门之十四：RigidBody2D刚体节点的应用以及简单的FSM状态机介绍](http://liuqingwen.me/blog/2019/07/20/introduction-of-godot-3-part-14-make-a-game-with-rigidbody2d-node-and-the-fsm-introduction)
+
+*本篇讲解到的知识点：*
+
+1. 介绍 RigidBody2D 刚体节点的基本属性
+2. 刚体节点的基本应用以及注意点
+3. 游戏场景的结构关系与核心代码说明
+4. 最简单的 FSM 有限状态机介绍和应用
+5. 新版本中存在的 Bug 以及解决方法
 
 ![Demo10](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo10.gif)
 

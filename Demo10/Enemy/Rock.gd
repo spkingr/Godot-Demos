@@ -34,9 +34,9 @@ func _ready():
 	
 	# 设置图片尺寸和爆炸粒子尺寸与传递的参数相匹配
 	_sprite.scale = Vector2(1, 1) * self.size * scaleFactor
-	_explosion.scale = Vector2(1, 1) * self.size * scaleFactor 
+	_explosion.scale = Vector2(1, 1) * self.size * scaleFactor
 	
-	# 给飞船一个碰撞体形状，和传递的参数半径相匹配
+	# 给岩石一个碰撞体形状，和传递的参数半径相匹配
 	var shape = CircleShape2D.new()
 	var textureSize = _sprite.texture.get_size()
 	shape.radius = (textureSize.x + textureSize.y) / 2.0 * _radius * scaleFactor
