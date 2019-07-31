@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/godot.png-5e0da45ed3d6786d5794553e04f58a8c.stex"
+path="res://.import/Stone.png-8c315bacae2ecd3f7796e5f4330a0e6e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://godot.png"
-dest_files=[ "res://.import/godot.png-5e0da45ed3d6786d5794553e04f58a8c.stex" ]
+source_file="res://Assets/Stone.png"
+dest_files=[ "res://.import/Stone.png-8c315bacae2ecd3f7796e5f4330a0e6e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

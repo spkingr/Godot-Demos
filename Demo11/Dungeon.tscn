@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Dungeon.gd" type="Script" id=1]
+[ext_resource path="res://Common/Room.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resource/font.tres" type="DynamicFont" id=3]
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource( 1 )
+roomScene = ExtResource( 2 )
+
+[node name="RoomContainer" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="GUI"]
+margin_right = 138.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.505882, 0.980392, 0.211765, 1 )
+text = "<< Back To Main Scene"
+
+[node name="Label" type="Label" parent="GUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -311.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.505882, 0.980392, 0.211765, 1 )
+text = "Spacebar to regenerate."
+[connection signal="pressed" from="GUI/Button" to="." method="_on_Button_pressed"]
