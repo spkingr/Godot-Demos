@@ -66,7 +66,7 @@ func produceItem() -> ItemData:
 		index = randi() % 3 + 5
 	elif probability < 0.55:
 		index = randi() % 4 + 1
-	return items[2]
+	return items[index]
 
 
 func backToMainScene() -> void:
