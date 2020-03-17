@@ -6,3 +6,8 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+
+# By myself
+.gdignore
+Notice.txt
+Sources/

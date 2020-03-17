@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Items/Pickups/PowerEnhancedBomb.gd" type="Script" id=1]
+[ext_resource path="res://Items/Assets/Items_powerenhancedbomb.png" type="Texture" id=2]
+
+[node name="PowerEnhancedBomb" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.501961 )
+position = Vector2( 0, 8 )
+texture = ExtResource( 2 )

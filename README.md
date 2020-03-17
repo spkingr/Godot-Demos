@@ -4,9 +4,16 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
-## Demo11: Coming soon...
+## Demo11: Introduction of Godot 3 part 15 - several usage examples of RigidBody2D node in games
 
-文章链接： ...
+文章链接： [Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例](http://liuqingwen.me/blog/2019/07/31/introduction-of-godot-3-part-15-several-usage-examples-of-rigidbody2d-node-in-games/)
+
+*本篇讲解到的知识点：*
+
+1. 刚体节点作为普通的游戏物品或者元素
+2. 刚体节点响应鼠标事件进行拖拽
+3. 利用刚体节点实现爆破特效
+4. 随机生成地图的应用
 
 ![Demo11-1](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo11-1.gif)
 ![Demo11-2](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo11-2.gif)

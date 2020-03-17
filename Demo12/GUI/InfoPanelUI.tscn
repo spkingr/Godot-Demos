@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GUI/InfoPanelUI.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Assets/Main_UI.png" type="Texture" id=2]
+[ext_resource path="res://GUI/Data/ui_theme.tres" type="Theme" id=3]
+
+[node name="InfoPanelUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -240.0
+rect_min_size = Vector2( 64, 128 )
+texture = ExtResource( 2 )
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 2044.0
+margin_bottom = 232.0
+custom_constants/separation = 8
+
+[node name="LabelInfo" type="RichTextLabel" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+margin_right = 2036.0
+margin_bottom = 168.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "[color=yellow]Player1 enters the room, welcome![/color]
+[img]res://GUI/Assets/MessageIcons.png[/img] [color=fuchsia]This guy collect a item![/color]
+[color=blue]player1[/color]: Hi all! 哈哈很好玩！
+[color=green]okfine gamer![/color]: Hi there! Fun to play, good luck!
+[color=red]player1[/color]: Hi all!
+[color=]okfine gamer![/color]: Hi there! Fun to play, good luck!"
+text = "Player1 enters the room, welcome!
+ This guy collect a item!
+player1: Hi all! 哈哈很好玩！
+okfine gamer!: Hi there! Fun to play, good luck!
+player1: Hi all!
+okfine gamer!: Hi there! Fun to play, good luck!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 176.0
+margin_right = 2036.0
+margin_bottom = 224.0
+
+[node name="TextMessage" type="LineEdit" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 1925.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+placeholder_text = "Enter to send message"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 1929.0
+margin_right = 2036.0
+margin_bottom = 48.0
+custom_constants/margin_right = 14
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+
+[node name="ButtonSend" type="Button" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 93.0
+margin_bottom = 46.0
+custom_colors/font_color = Color( 0.545098, 0.890196, 0.211765, 1 )
+text = "Send"
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="pressed" from="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/ButtonSend" to="." method="_on_ButtonSend_pressed"]

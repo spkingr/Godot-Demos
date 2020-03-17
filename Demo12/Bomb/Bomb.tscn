@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Bomb/Assets/Bomb.png" type="Texture" id=1]
+[ext_resource path="res://Bomb/Bomb.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.0
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.603352, 1 )
+colors = PoolColorArray( 0.929688, 0.763755, 0.00623953, 1, 0.527344, 0.245561, 0.107946, 1, 0.902344, 0.299583, 0.115064, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+direction = Vector3( 0.8, -1, 0 )
+spread = 30.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 40.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_random = 0.5
+color_ramp = SubResource( 3 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "ready"
+length = 0.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Bomb" type="StaticBody2D" groups=[
+"bomb",
+]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 64, 64, 64 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="ExplodeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="EnableCollisionTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 5.61091, -28.6675 )
+emitting = false
+amount = 20
+lifetime = 0.3
+process_material = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "ready"
+anims/ready = SubResource( 5 )
+[connection signal="timeout" from="ExplodeTimer" to="." method="_on_ExplodeTimer_timeout"]
+[connection signal="timeout" from="EnableCollisionTimer" to="." method="_on_EnableCollisionTimer_timeout"]
