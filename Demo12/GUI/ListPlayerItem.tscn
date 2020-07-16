@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/ListPlayerItem.gd" type="Script" id=1]
+
+[node name="ListPlayerItem" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 2044.0
+margin_bottom = 1200.0
+custom_constants/separation = 16
+
+[node name="LabelName" type="Label" parent="HBoxContainer"]
+margin_top = 589.0
+margin_right = 1793.0
+margin_bottom = 603.0
+size_flags_horizontal = 3
+text = "Player Name(id = ?, server)"
+
+[node name="LabelReady" type="Label" parent="HBoxContainer"]
+margin_left = 1809.0
+margin_top = 589.0
+margin_right = 1874.0
+margin_bottom = 603.0
+text = "Not Ready"
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+margin_left = 1890.0
+margin_right = 1954.0
+margin_bottom = 1192.0
+rect_min_size = Vector2( 64, 0 )
+
+[node name="ButtonKick" type="Button" parent="HBoxContainer"]
+margin_left = 1970.0
+margin_right = 2036.0
+margin_bottom = 1192.0
+disabled = true
+text = "Kick Out"
+[connection signal="pressed" from="HBoxContainer/ButtonKick" to="." method="_on_ButtonKick_pressed"]

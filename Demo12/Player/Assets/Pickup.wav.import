@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pickup.wav-3ef61d64efb86db6ee7626c9156ecebe.sample"
+
+[deps]
+
+source_file="res://Player/Assets/Pickup.wav"
+dest_files=[ "res://.import/Pickup.wav-3ef61d64efb86db6ee7626c9156ecebe.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
