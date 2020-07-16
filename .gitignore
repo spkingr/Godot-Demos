@@ -11,3 +11,4 @@ export_presets.cfg
 .gdignore
 Notice.txt
 Sources/
+.build/
