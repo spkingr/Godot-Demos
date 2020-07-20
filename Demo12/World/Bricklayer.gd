@@ -24,6 +24,8 @@ var _isPaused := false
 var canSuccess := true
 var path := [] setget __setPath__
 
+puppet var isDead := false
+
 
 func __setPath__(value : Array) -> void:
 	_hasPath = true
@@ -31,11 +33,17 @@ func __setPath__(value : Array) -> void:
 
 
 func _ready() -> void:
+	if ! self.is_network_master():
+		return
+	
 	yield(_readyTimer, 'timeout')
 	_requestPath()
 
 
 func _physics_process(delta: float) -> void:
+	if ! self.is_network_master():
+		return
+	
 	if _isRepairing:
 		_checkBomb()
 		return
@@ -47,7 +55,8 @@ func _physics_process(delta: float) -> void:
 	if _raycast.enabled:
 		_raycast.force_raycast_update()
 	if _raycast.enabled && _raycast.is_colliding():
-		_animationPlayer.current_animation = 'idle'
+		if _animationPlayer.current_animation != 'idle':
+			self.rpc('_changeAnimation', 'idle')
 		var collider = _raycast.get_collider()
 		if collider.is_in_group('bomb'):
 			_moveDirection = - _moveDirection
@@ -59,8 +68,21 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if _hasPath:
-		_animationPlayer.current_animation = 'move'
+		if _animationPlayer.current_animation != 'move':
+			self.rpc('_changeAnimation', 'move')
 		_followPath(delta)
+		
+		self.rpc_unreliable('_updatePosition', self.position)
+
+
+# why not use puppet? first loaded the game contains an instance, maybe not set the master id
+# so remote prefers puppet, I think
+remote func _updatePosition(pos : Vector2) -> void:
+	self.position = pos
+
+
+remotesync func _changeAnimation(anim : String) -> void:
+	_animationPlayer.current_animation = anim
 
 
 func _requestPath() -> void:
@@ -126,7 +148,7 @@ func _getToTarget() -> void:
 
 func _startWorking() -> void:
 	_isRepairing = true
-	_animationPlayer.current_animation = 'work'
+	self.rpc('_changeAnimation', 'work')
 	for raycast in _bombChecker:
 		raycast.enabled = true
 	_makingTimer.start()
@@ -160,24 +182,29 @@ func _on_EnableRaycastTimer_timeout() -> void:
 func _dead() -> void:
 	_resetMoving()
 	self.set_physics_process(false)
+	self.set_process(false)
 	_raycast.enabled = false
-	_animationPlayer.current_animation = 'die'
+	
+	self.rpc('_changeAnimation', 'die')
+	
 	yield(_animationPlayer, 'animation_finished')
 	
 	self.emit_signal('dead')
 
 
-func bomb() -> void:
+master func bomb() -> void:
 	_dead()
 
 
-func respawn() -> void:
+master func respawn() -> void:
+	self.rpc('_updatePosition', self.position) # Important!!!
+	
 	_hasPath = false
 	_isSuccessful = true
 	_moveDirection = Vector2(1, 0)
 	_raycast.enabled = true
 	_raycast.cast_to = _moveDirection * GameConfig.TILE_SIZE / 2
-	_animationPlayer.current_animation = 'idle'
+	self.rpc('_changeAnimation', 'idle')
 	_makingTimer.stop()
 	_enableRaycastTimer.stop()
 	

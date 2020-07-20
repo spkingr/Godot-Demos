@@ -100,4 +100,5 @@ custom_colors/font_color = Color( 0.545098, 0.890196, 0.211765, 1 )
 text = "Send"
 
 [node name="Tween" type="Tween" parent="."]
+[connection signal="text_entered" from="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/TextMessage" to="." method="_on_ButtonSend_pressed"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/ButtonSend" to="." method="_on_ButtonSend_pressed"]

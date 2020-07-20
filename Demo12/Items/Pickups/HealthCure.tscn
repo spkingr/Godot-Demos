@@ -2,14 +2,14 @@
 
 [ext_resource path="res://Items/Pickups/HealthCure.gd" type="Script" id=1]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.2662, 0.548161, 0.828371, 1 )
 colors = PoolColorArray( 0.0802113, 0.879974, 0.882324, 1, 1, 0.84375, 0, 1, 0.839355, 0.049993, 0.049993, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
 emission_box_extents = Vector3( 32, 4, 0 )
 flag_disable_z = true
@@ -21,7 +21,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 2.0
 scale_random = 0.5
-color_ramp = SubResource( 3 )
+color_ramp = SubResource( 2 )
 
 [node name="HealthCure" type="Node"]
 script = ExtResource( 1 )
@@ -30,4 +30,4 @@ script = ExtResource( 1 )
 position = Vector2( 0, -40 )
 amount = 30
 visibility_rect = Rect2( -32, -8, 64, 14 )
-process_material = SubResource( 1 )
+process_material = SubResource( 3 )

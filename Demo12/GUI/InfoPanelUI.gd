@@ -37,7 +37,7 @@ func _onEntering() -> void:
 	GameConfig.emit_signal('text_enter', _isEntering)
 
 
-func _on_ButtonSend_pressed() -> void:
+func _on_ButtonSend_pressed(msg : String = '') -> void:
 	_messageContainer.visible = false
 	_isEntering = false
 	_sendMessage()
@@ -51,11 +51,17 @@ func _sendMessage() -> void:
 	
 	if ! msg.empty():
 		GameConfig.sendMessage(GameConfig.MessageType.Chat, GameState.myId, msg)
+		GameConfig.rpc('sendMessage', GameConfig.MessageType.Chat, GameState.myId, msg)
 
 
 func _on_NewMessage_arrive(bbcodeMessage : String) -> void:
+#	self.rpc('_remoteAppendMessage', bbcodeMessage)
+	_remoteAppendMessage(bbcodeMessage)
+
+
+remotesync func _remoteAppendMessage(msg : String) -> void:
 	_labelInfo.newline()
-	_labelInfo.append_bbcode(bbcodeMessage)
+	_labelInfo.append_bbcode(msg)
 	
 	yield(self.get_tree(), 'idle_frame')
 	var lineCount := _labelInfo.get_line_count()
@@ -71,3 +77,4 @@ func _on_NewMessage_arrive(bbcodeMessage : String) -> void:
 		var duration := 1.0
 		_tween.interpolate_method(_labelInfo, 'scroll_to_line', start, final, duration, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 		_tween.start()
+

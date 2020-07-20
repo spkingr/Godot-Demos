@@ -6,14 +6,29 @@ export var addPerSeconds : float = 3.0
 
 
 func _process(delta: float) -> void:
+	if ! _parent.is_network_master():
+		return
+	
+	if _parent.health <= 0.0:
+		return
+	
 	if healthAmount <= delta * addPerSeconds:
 		var old := _parent.health / 100
 		_parent.health += healthAmount
-		_parent.health = clamp(_parent.health, 0.0, 100.0)
-		self.queue_free()
+		self.rpc('_remoteSet', clamp(_parent.health, 0.0, _parent.maxHealth))
+		self.rpc('_deleteObject')
 		return
 	
 	var old := _parent.health / 100
 	_parent.health += delta * addPerSeconds
-	_parent.health = clamp(_parent.health, 0.0, 100.0)
 	healthAmount -= delta * addPerSeconds
+	self.rpc_unreliable('_remoteSet', clamp(_parent.health, 0.0, _parent.maxHealth))
+
+
+remotesync func _remoteSet(health : float) -> void:
+	_parent.health = health
+
+
+remotesync func _deleteObject() -> void:
+	self.queue_free()
+

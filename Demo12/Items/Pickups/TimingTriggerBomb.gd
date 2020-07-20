@@ -9,7 +9,13 @@ func _setup() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if ! _parent.is_network_master():
+		return
+	
 	if event.is_action_pressed('detonate_bomb'):
 		self.set_process_unhandled_input(false)
 		self.set_process_input(false)
 		_parent.bomb()
+		
+		self.queue_free()
+

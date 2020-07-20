@@ -1,29 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Items/Pickups/SpeedUp.gd" type="Script" id=1]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.251397, 0.381283, 1 )
 colors = PoolColorArray( 0.957031, 0.432014, 0.117004, 1, 1, 1, 1, 1, 0.798182, 0.973633, 0.65621, 1, 0.357264, 0.666992, 0.106635, 1 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-
-[sub_resource type="ParticlesMaterial" id=5]
-emission_shape = 2
-emission_box_extents = Vector3( 2, 2, 0 )
-flag_disable_z = true
-spread = 20.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 20.0
-damping_random = 0.5
-scale = 8.0
-scale_random = 1.0
-color_ramp = SubResource( 2 )
 
 [node name="SpeedUpPlayer" type="Node2D"]
 script = ExtResource( 1 )
@@ -33,10 +14,20 @@ wait_time = 15.0
 one_shot = true
 autostart = true
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="Particles2D" type="CPUParticles2D" parent="."]
 position = Vector2( 2.83122e-07, 28 )
 amount = 20
 lifetime = 0.2
 local_coords = false
-process_material = SubResource( 5 )
+emission_shape = 2
+emission_rect_extents = Vector2( 2, 2 )
+spread = 20.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 0.5
+damping = 20.0
+damping_random = 0.5
+scale_amount = 8.0
+scale_amount_random = 1.0
+color_ramp = SubResource( 1 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

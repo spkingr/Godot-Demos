@@ -1,18 +1,20 @@
 extends TileMap
 
 
-export var maxRequestCount := 3 # max time to find path for brickerlayer
+export var maxRequestCount := 5 # max time to find path for brickerlayer
 
 onready var _respawnTimer := $RespawnTimer as Timer
 onready var _bricklayer : Node2D = $Bricklayer
 
 var _navigation : Navigation2D = null
-var _brokenTiles := []
+var _brokenTiles := []         # Should update in Server and Clients!
 var _requestTimes := 0
 var _repaireTargetTile := Vector2(-1, -1)
 
 
 func _ready() -> void:
+	# Here the data should be synchronized in all peers!!!
+	# Or you can just use in the Server, but not the Master peer!
 	_navigation = self.get_parent()
 	for tile in self.get_used_cells():
 		if self.get_cellv(tile) == GameConfig.GRASS_TILE_ID:
@@ -24,6 +26,8 @@ func _on_Bricklayer_dead() -> void:
 
 
 func _on_RespawnTimer_timeout() -> void:
+	assert(self.is_network_master(), 'Bricklayer must respawn at Master Node!')
+	
 	_requestTimes = 0
 	var tilePos := Vector2(-1, -1)
 	for tile in _brokenTiles:
@@ -31,6 +35,7 @@ func _on_RespawnTimer_timeout() -> void:
 		if count >= 3:
 			tilePos = tile
 			break
+	
 	if tilePos == Vector2(-1, -1):
 		_respawnTimer.start()
 	else:
@@ -41,9 +46,20 @@ func _on_RespawnTimer_timeout() -> void:
 func _on_Bricklayer_brick_repaire_done() -> void:
 	assert(_repaireTargetTile in _brokenTiles, 'Some wrong with repaired tiles!')
 	
-	_brokenTiles.erase(_repaireTargetTile)
-	self.set_cellv(_repaireTargetTile, self.tile_set.find_tile_by_name('Brick'))
+	self.rpc('_updateBrokenTilesData', _repaireTargetTile, false)
+	self.rpc('_tileMapChangeTileAt', _repaireTargetTile, self.tile_set.find_tile_by_name('Brick'))
 	_repaireTargetTile = Vector2(-1, -1)
+
+
+remotesync func _updateBrokenTilesData(tile : Vector2, isAppend : bool = true) -> void:
+	if isAppend:
+		_brokenTiles.append(tile)
+	else:
+		_brokenTiles.erase(tile)
+
+
+remotesync func _tileMapChangeTileAt(mapPos : Vector2, tileId : int) -> void:
+	self.set_cellv(mapPos, tileId)
 
 
 func _on_Bricklayer_request_new_path() -> void:
@@ -63,7 +79,7 @@ func _on_Bricklayer_request_new_path() -> void:
 		_on_Bricklayer_request_new_path()
 		_requestTimes += 1
 		if _requestTimes >= maxRequestCount:
-			_bricklayer.bomb()
+			_bricklayer.rpc('bomb')
 		return
 	
 	var pathArray := Array(path)
@@ -80,9 +96,7 @@ func _on_Bricklayer_request_new_path() -> void:
 	
 	_requestTimes = 0
 	
-	
-	# test
-	$'Painter-Debug'.path = pathArray
+#	$'Painter-Debug'.path = pathArray
 
 
 func _getEmptyNeighbors(tile : Vector2) -> int:
@@ -98,12 +112,12 @@ func _getEmptyNeighbors(tile : Vector2) -> int:
 
 func addBrokenTile(mapPos : Vector2) -> void:
 	if ! mapPos in _brokenTiles:
-		_brokenTiles.append(mapPos)
+		self.rpc('_updateBrokenTilesData', mapPos, true)
 
 
 func removeBrokenTile(mapPos : Vector2) -> bool:
 	if mapPos in _brokenTiles:
-		_brokenTiles.erase(mapPos)
+		self.rpc('_updateBrokenTilesData', mapPos, false)
 		return true
 	return false
 
@@ -131,3 +145,4 @@ func getRandomTile() -> Vector2:
 			return tile
 	
 	return Vector2(-1, -1)
+

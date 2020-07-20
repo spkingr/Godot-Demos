@@ -13,13 +13,16 @@ onready var _pausedTimer := $PausedTimer as Timer
 onready var _enableCheckTimer := $EnableCheckTimer as Timer
 onready var _playerRaycasts := [$PlayerCheckers/RayCast2D1, $PlayerCheckers/RayCast2D2, $PlayerCheckers/RayCast2D3, $PlayerCheckers/RayCast2D4]
 
+remotesync var _isPaused := false
+remotesync var _isDead := false
 var _moveDirection := Vector2.ZERO
-var _isPaused := false
-var _isDead := false
 var _nextPosition := Vector2.ZERO
 
 
 func _ready() -> void:
+	if ! self.is_network_master():
+		return
+	
 	self.position = self.position.snapped(GameConfig.TILE_HALF_SIZE_VECTOR)
 	yield(self.get_tree(), 'idle_frame')
 	_checkAndMove()
@@ -58,7 +61,7 @@ func _checkAndMove() -> void:
 			availableDirections.append(dir)
 	
 	if availableDirections.empty():
-		_isPaused = true
+		self.rpc('_setPaused', true)
 		_moveDirection = Vector2.ZERO
 		_animationPlayer.current_animation = 'idle'
 		_pausedTimer.start()
@@ -86,6 +89,9 @@ func _disableCheckers(disabled : bool = true) -> void:
 
 
 func _physics_process(delta):
+	if ! self.is_network_master():
+		return
+	
 	if _isDead || _isPaused:
 		return
 	
@@ -105,38 +111,73 @@ func _physics_process(delta):
 		_nextPosition = _nextPosition.snapped(GameConfig.TILE_HALF_SIZE_VECTOR)
 
 
+func _process(delta: float) -> void:
+	if ! self.is_network_master():
+		return
+	
+	if _isDead || _isPaused:
+		return
+	
+	self.rpc_unreliable('_puppetSet', self.position, _sprite.flip_h, _animationPlayer.current_animation)
+
+
+puppet func _puppetSet(pos : Vector2, flip : bool, anim : String) -> void:
+	self.position = pos
+	_sprite.flip_h = flip
+	_animationPlayer.current_animation = anim
+
+
 func _on_DamageArea_body_entered(body):
+	if ! self.is_network_master():
+		return
+	
 	if body != null && is_instance_valid(body) && body.has_method('damage'):
 		var direction = (body.global_position - self.global_position).normalized()
-		body.damage(damageAmount, direction)
+		body.rpc('damage', damageAmount, direction)
 
 
 func _on_PausedTimer_timeout() -> void:
-	_isPaused = false
+	self.rset('_isPaused', false)
 
 
 func _dead() -> void:
-	_isDead = true
+	self.rset('_isDead', true)
 	_animationPlayer.current_animation = 'die'
 	yield(_animationPlayer, 'animation_finished')
 	
+	var type := GameConfig.produceItemIndex()
+	var pos := self.global_position
+	self.rpc('_dieAndSpawnItem', 1, type, pos, self.name + 'item')
+	
+	assert(GameState.myId == 1, 'Only the server can respawn enemy items.')
+	
+
+remotesync func _dieAndSpawnItem(id : int, type : int, pos : Vector2, name : String) -> void:
 	var item = GameConfig.Item.instance()
-	item.global_position = self.global_position
+	item.name = name
+	item.type = type
+	item.global_position = pos
+	item.set_network_master(id)
 	self.get_parent().add_child(item)
 	
 	self.queue_free()
 
 
-func bomb(byKiller : int, damage : int) -> void:
+remotesync func _addItem(data : String) -> void:
+	var power : Node = load(data).instance()
+	self.add_child(power)
+
+
+master func bomb(byKiller : int, damage : int) -> void:
 	if _isDead || self.isInvulnerable:
 		return
 	_dead()
 
 
-func collect(item : GameConfig.ItemData) -> void:
+master func collect(itemIndex : int) -> void:
+	var item = GameConfig.items[itemIndex]
 	if item == null || item.data == '':
 		return
-	
 	if item.type == GameConfig.ItemType.ActorEffect:
-		var power : Node = load(item.data).instance()
-		self.add_child(power)
+		self.rpc('_addItem', item.data)
+

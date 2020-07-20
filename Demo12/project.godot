@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/Player.gd"
 }, {
+"base": "MarginContainer",
+"class": "PlayerItem",
+"language": "GDScript",
+"path": "res://GUI/ListPlayerItem.gd"
+}, {
 "base": "Control",
 "class": "ResultPopup",
 "language": "GDScript",
@@ -63,13 +68,14 @@ _global_script_class_icons={
 "InfoPanel": "",
 "Item": "",
 "Player": "",
+"PlayerItem": "",
 "ResultPopup": ""
 }
 
 [application]
 
 config/name="Demo12"
-run/main_scene="res://World/Game.tscn"
+run/main_scene="res://GUI/LobbyUI.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -175,5 +181,6 @@ text_enter={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"

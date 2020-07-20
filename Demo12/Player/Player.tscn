@@ -1,11 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/skin.shader" type="Shader" id=2]
 [ext_resource path="res://GUI/Assets/Simplified Chinese Fonts.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Player/Assets/Laybomb.wav" type="AudioStream" id=4]
 [ext_resource path="res://Player/Assets/Player.png" type="Texture" id=5]
+[ext_resource path="res://Player/Assets/Hurt.wav" type="AudioStream" id=6]
+[ext_resource path="res://Player/Assets/Pickup.wav" type="AudioStream" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/tint_color = Color( 1, 1, 1, 1 )
 shader_param/replace_color = Color( 0.996078, 0.952941, 0.752941, 1 )
@@ -38,6 +42,32 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -121,6 +151,9 @@ font_data = ExtResource( 3 )
 ]]
 collision_mask = 14
 script = ExtResource( 1 )
+layBombAudio = ExtResource( 4 )
+hurtAudio = ExtResource( 6 )
+pickupAudio = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )
@@ -130,7 +163,6 @@ hframes = 6
 frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0.182983, -0.0361213 )
 shape = SubResource( 2 )
 __meta__ = {
@@ -182,3 +214,8 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.0
+[connection signal="timeout" from="StunTimer" to="." method="_on_StunTimer_timeout"]

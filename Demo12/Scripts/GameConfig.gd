@@ -5,6 +5,12 @@ signal text_enter(isEntering)
 signal new_message(content)
 
 
+######### Time Waiting #########
+const TIME_TO_WAIT := 3
+
+#########  Scenes  #########
+const LobbyScene := 'res://GUI/LobbyUI.tscn'
+
 ######### Messages #########
 enum MessageType {System, Information, Chat}
 
@@ -51,14 +57,16 @@ var items = [
 
 const Item : PackedScene = preload('res://Items/Item.tscn')
 
+######### VARIABLES #########
+var isManualShown := false
+var isSoundOn := true
 
 ######### FUNCTIONS #########
 func _ready() -> void:
 	randomize()
-	print('randi in ', self.get_script().resource_path)
 
 
-func produceItem() -> ItemData:
+func produceItemIndex() -> int:
 	var index := 0
 	var probability := randf()
 	# 40% produce bomb items, 55% produce actor items, 5% produce empty
@@ -66,37 +74,34 @@ func produceItem() -> ItemData:
 		index = randi() % 3 + 5
 	elif probability < 0.55:
 		index = randi() % 4 + 1
-	return items[index]
+	return index
 
 
 func backToMainScene() -> void:
-	var scene = load('res://GUI/LobbyUI.tscn')
-	self.get_tree().change_scene_to(scene)
+	self.get_parent().get_node(@'/root/Game').queue_free()
+	self.get_tree().change_scene(LobbyScene)
+	GameState.resetNetwork()
 
 
-func sendMessage(type : int, playerID : int, content : String) -> void:
+remote func sendMessage(type : int, playerID : int, content : String) -> void:
 	content = content.strip_edges()
 	if content.empty():
 		return
 	
-	var bbcode : String = '[color=red]Error, please check![/color]'
+	var isSelf : bool = playerID == GameState.myId
+	var bbcode : = '[color=red]Error, please check![/color]'
+	var playerName := 'You' if isSelf else GameState.otherPlayerNames[playerID]
+	var playerColor : Color = GameState.myColor if isSelf else GameState.otherPlayerColors[playerID]
+	
 	match type:
 		MessageType.System:
-			var color := 'yellow'
-			var playerName := 'You' if playerID == GameState.myId else 'PlayerID???'
-			bbcode = '[color=%s]%s %s[/color]' % [color, playerName, content] if playerID > 0 else '[color=%s]%s[/color]' % [color, content]
+			var sysColor := 'yellow'
+			bbcode = '[color=%s]%s[/color] [color=%s]%s[/color]' % [playerColor.to_html(false), playerName, sysColor, content] if playerID > 0 else '[color=%s]%s[/color]' % [sysColor, content]
 		MessageType.Information:
-			var playerName := 'You' if playerID == GameState.myId else 'PlayerID???'
-			var playerColor := Color.white
-			var color := 'lime' if playerID == GameState.myId else 'fuchsia'
-			bbcode = '[img]res://GUI/Assets/MessageIcons.png[/img] [color=#%s]%s[/color] [color=%s]%s[/color]' % [playerColor, playerName, color, content]
+			var infoColor := 'white' if isSelf else 'yellow'
+			bbcode = '[img]res://GUI/Assets/MessageIcons.png[/img] [color=#%s]%s[/color] [color=%s]%s[/color]' % [playerColor.to_html(false), playerName, infoColor, content]
 		MessageType.Chat:
-			assert(playerID > 0)
-			var playerName := 'You' if playerID == GameState.myId else 'PlayerID???'
-			var playerColor := Color.white
-			bbcode = '[color=#%s]%s[/color]: %s' % [playerColor, playerName, content]
-		_:
-			pass
-
+			bbcode = '[color=#%s]%s[/color]: %s' % [playerColor.to_html(false), playerName, content]
+	
 	self.emit_signal('new_message', bbcode)
 

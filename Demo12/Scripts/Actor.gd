@@ -23,9 +23,9 @@ func __setIsInvulnerable__(value : bool) -> void:
 	isInvulnerable = value
 
 
-func collect(item : GameConfig.ItemData) -> void:
+master func collect(itemIndex : int) -> void:
 	pass
 
 
-func bomb(byKiller : int, damage : int) -> void:
+master func bomb(byKiller : int, damage : int) -> void:
 	pass
