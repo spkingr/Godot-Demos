@@ -31,7 +31,7 @@ var _isStuning := false
 var _isDead := false
 var _canInput := true
 var _killers := []
-var _items := [] # item index in GameConfig.items
+var _items := []           # item index in GameConfig.items
 var _lastKillerId := 0
 
 var playerId := 0
@@ -167,6 +167,7 @@ remotesync func _addItem(id : int, data : String) -> void:
 	self.add_child(power)
 
 
+# Bug：不能在同一地点丢两个炸弹
 func _layBomb() -> void:
 	if ! _cooldownTimer.is_stopped():
 		return

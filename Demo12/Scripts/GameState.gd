@@ -28,11 +28,7 @@ master var readyPlayers := []
 master var availableColors := []
 
 
-func ________________debugInfo(info : String) -> void:
-	prints('[Debug] ###### -> {', info, '} [self: %s]' % myId)
-
-
-func _ready():
+func _ready() -> void:
 	self.get_tree().connect('network_peer_connected', self, '_onNewPlayerConnected')
 	self.get_tree().connect('network_peer_disconnected', self, '_onPlayerDisconnected')
 	self.get_tree().connect('server_disconnected', self, '_onServerDisconnected')
@@ -45,8 +41,9 @@ func _onNewPlayerConnected(id : int) -> void:
 	if isGameStarted:
 		return
 
-	self.rpc_id(id, '_addMyNameToList', myName, myColor)
+	var s = self.rpc_id(id, '_addMyNameToList', myName, myColor)
 	
+	# 服务端处理游戏准备事件、分配颜色
 	if self.get_tree().is_network_server():
 		self.emit_signal('game_ready', false)
 		
@@ -126,6 +123,7 @@ remote func _readyGame(isReady : bool) -> void:
 			self.emit_signal('game_ready', false)
 
 
+# 开始游戏第一步：实例化游戏场景，并且暂停，通知服务器等待其他玩家
 remotesync func _prestartGame() -> void:
 	isGameStarted = true
 	
@@ -141,17 +139,20 @@ remotesync func _prestartGame() -> void:
 		self.rpc_id(1, '_postStartGame', myId)
 
 
+# 开始游戏第二步：等待所有玩家全部加载、实例化游戏场景
 remote func _postStartGame(id : int) -> void:
 	readyPlayers.append(id)
 	if readyPlayers.size() == otherPlayerNames.size() + 1:
 		self.rpc('_startGame')
 
 
+# 开始游戏第三步：全部进入游戏，开始
 remotesync func _startGame() -> void:
 	readyPlayers.clear()
 	self.emit_signal('game_loaded')
 
 
+# 创建服务器
 func hostGame(playerName: String) -> bool:
 	myName = playerName
 	otherPlayerNames.clear()
@@ -165,13 +166,14 @@ func hostGame(playerName: String) -> bool:
 		return false
 	
 	self.get_tree().network_peer = host
-	self.get_tree().refuse_new_network_connections = false
+	self.get_tree().refuse_new_network_connections = true
 	
 	myId = self.get_tree().get_network_unique_id() # id = 1 is the server
 	myColor = _getRandomColor()
 	return true
 
 
+# 创建客户端，加入游戏
 func joinGame(address: String, playerName: String) -> bool:
 	myName = playerName
 	otherPlayerNames.clear()
@@ -193,9 +195,12 @@ func resetNetwork() -> void:
 	isGameStarted = false
 	otherPlayerNames.clear()
 	otherPlayerColors.clear()
+	
+	yield(self.get_tree(), 'idle_frame')
 	self.get_tree().network_peer = null
 
 
+# 服务器端调用，开始游戏
 func startGame() -> void:
 	assert(myId == 1, 'Only server can start game!')
 	
@@ -204,6 +209,7 @@ func startGame() -> void:
 	self.rpc('_prestartGame')
 
 
+# 客户端调用，准备状态
 func readyGame(isReady : bool) -> void:
 	assert(myId != 1, 'Server cannot send info to server-self!')
 	

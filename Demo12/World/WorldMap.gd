@@ -1,20 +1,20 @@
 extends TileMap
 
 
-export var maxRequestCount := 5 # max time to find path for brickerlayer
+export var maxRequestCount := 5 # max number of times to find path for brickerlayer
 
 onready var _respawnTimer := $RespawnTimer as Timer
 onready var _bricklayer : Node2D = $Bricklayer
 
 var _navigation : Navigation2D = null
-var _brokenTiles := []         # Should update in Server and Clients!
+var _brokenTiles := []          # Should update in Server and Clients
 var _requestTimes := 0
 var _repaireTargetTile := Vector2(-1, -1)
 
 
 func _ready() -> void:
 	# Here the data should be synchronized in all peers!!!
-	# Or you can just use in the Server, but not the Master peer!
+	# Or you can just use in the Server, not the Master peer!
 	_navigation = self.get_parent()
 	for tile in self.get_used_cells():
 		if self.get_cellv(tile) == GameConfig.GRASS_TILE_ID:

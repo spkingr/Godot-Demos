@@ -1,3 +1,7 @@
+"""
+用于Debug，将节点添加到任意景中
+设置path的值即可显示
+"""
 extends Node2D
 
 

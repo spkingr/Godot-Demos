@@ -13,7 +13,7 @@ onready var _tileSet : TileSet = $WorldMap.tile_set
 onready var _bombContainer : Node2D = $BombContainer
 onready var _enemiesContainer : Node2D = $Enemies
 onready var _playersContainer : Node2D = $Players
-onready var _playerPositions := [$Players/Position1.position, $Players/Position2.position, $Players/Position3.position, $Players/Position4.position]
+onready var _playerPositionNodes := [$Players/Position1, $Players/Position2, $Players/Position3, $Players/Position4]
 onready var _resultPopup := $CanvasLayer/HUD/ResultPopup as ResultPopup
 onready var _infoPanel := $CanvasLayer/HUD/InfoPanelUI as InfoPanel
 onready var _frequencyTimer := $SpawnFrequencyTimer as Timer
@@ -44,12 +44,16 @@ func _ready() -> void:
 	GameConfig.rpc('sendMessage', GameConfig.MessageType.System, GameState.myId, 'enters the game!')
 
 
+# 根据游戏玩家量设置难度：敌人数量，炸弹伤害力
 func _setDifficulties() -> void:
 	var playerCount := GameState.otherPlayerNames.size() + 1
 	maxEnemyCount = max(10 - playerCount * playerCount + playerCount, 5)
 	_bombExtraDamage = 5 - playerCount * 10
 
 
+# 添加玩家，一个master其他都是puppet
+# 只有主人节点添加相关事件
+# 设置玩家的起始位置，由玩家的id大小决定
 func _addPlayers() -> void:
 	var positions := [GameState.myId] + GameState.otherPlayerNames.keys()
 	positions.sort()
@@ -63,7 +67,7 @@ func _addPlayers() -> void:
 	player.playerId = GameState.myId
 	player.playerName = GameState.myName
 	player.playerColor = GameState.myColor
-	player.global_position = _playerPositions[positions.find(GameState.myId)]
+	player.global_position = _playerPositionNodes[positions.find(GameState.myId)].position
 	player.set_network_master(GameState.myId)
 	_playersContainer.add_child(player)
 	
@@ -75,18 +79,22 @@ func _addPlayers() -> void:
 		player.playerId = id
 		player.playerName = str(GameState.otherPlayerNames[id])
 		player.playerColor = GameState.otherPlayerColors[id]
-		player.global_position = _playerPositions[positions.find(id)]
+		player.global_position = _playerPositionNodes[positions.find(id)].position
 		player.set_network_master(id)
 		_playersContainer.add_child(player)
 		
 		_allPlayers.append(id)
+	
+	for node in _playerPositionNodes:
+		node.queue_free()
 
 
+# 游戏加载完成，暂停等待3秒进入游戏
 func _onGameLoaded() -> void:
 	OS.window_maximized = true
 	GameState.disconnect('game_loaded', self, '_onGameLoaded')
 	
-	var waitTime := GameConfig.WALL_TILE_ID
+	var waitTime := GameConfig.TIME_TO_WAIT
 	_resultPopup.showPopup('Get ready!\n%s second(s) later to go!' % waitTime, 'Ready', true, _resultPopup.BUTTON_STAY_BIT + _resultPopup.BUTTON_BACK_BIT)
 	
 	yield(self.get_tree().create_timer(waitTime), 'timeout')
@@ -94,6 +102,7 @@ func _onGameLoaded() -> void:
 	_resultPopup.hidePopup()
 
 
+# 游戏结束：链接断开、服务器掉线等
 func _onGameEnded(why : String) -> void:
 	self.set_process_unhandled_input(false)
 	self.set_process_input(false)
@@ -101,6 +110,7 @@ func _onGameEnded(why : String) -> void:
 	_resultPopup.showPopup('Game is ended for:\n%s' % why, 'GAME OVER', true, 1)
 
 
+# 玩家掉线或者退出游戏场景
 func _onPlayerQuit(id : int) -> void:
 	if id in _allPlayers:
 		_allPlayers.erase(id)
@@ -119,6 +129,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_resultPopup.showPopup('Quit Game?', 'WARNING')
 
 
+# 玩家受到攻击发送信息
 func _on_Player_damaged(byKiller : int) -> void:
 	if byKiller <= 0:
 		return
@@ -132,6 +143,7 @@ func _on_Player_damaged(byKiller : int) -> void:
 		GameConfig.rpc('sendMessage', GameConfig.MessageType.Information, GameState.myId, msg)
 
 
+# 玩家收集到物品发送通知消息
 func _on_Player_collect_item(item : GameConfig.ItemData) -> void:
 	var type := 'Unknown'
 	match item.type:
@@ -146,6 +158,7 @@ func _on_Player_collect_item(item : GameConfig.ItemData) -> void:
 	GameConfig.rpc('sendMessage', GameConfig.MessageType.Information, GameState.myId, msg)
 
 
+# 玩家死亡
 func _on_Player_dead(byKiller : int) -> void:
 	var killer := 'Monsters!'
 	if byKiller > 0:
@@ -165,6 +178,7 @@ func _on_Player_dead(byKiller : int) -> void:
 	_resultPopup.showPopup('You lost!\nThe killer: %s' % killer, 'Game Over', true)
 
 
+# 玩家死亡发送信息到其他端
 remote func _playerDead() -> void:
 	var id := self.get_tree().get_rpc_sender_id()
 	_allPlayers.erase(id)
@@ -188,6 +202,7 @@ remote func _showWinner(playerName : String) -> void:
 	_resultPopup.showPopup('%s win the game!\nCongratulations!' % playerName, 'Game Over', true)
 
 
+# 放置炸弹
 func _on_Player_lay_bomb(ownerId : int, pos : Vector2, power : int, itemIndex : int) -> void:
 	if bombScene == null:
 		return
@@ -202,6 +217,7 @@ func _on_Player_lay_bomb(ownerId : int, pos : Vector2, power : int, itemIndex : 
 	self.rpc('_layBomb', GameState.myId, pos, ownerId, tile, power, itemIndex, name)
 
 
+# 远程生成炸弹实例
 remotesync func _layBomb(id : int, position : Vector2, ownerId : int, tile : Vector2, power : int, itemIndex : int, name : String) -> void:
 	var item : GameConfig.ItemData = null
 	if itemIndex >= 0: # index = -1 is valid in Python and GDScript!!!
@@ -217,6 +233,7 @@ remotesync func _layBomb(id : int, position : Vector2, ownerId : int, tile : Vec
 	_bombContainer.add_child(bomb)
 
 
+# 炸弹爆炸
 func _on_bomb_explosion(owerId : int, pos : Vector2, power : int, damage : int) -> void:
 	_tileMap.addBrokenTile(pos)           # 2 ------- this tile with bomb is exploded
 	_explodeAndGoOn(owerId, pos, damage)
@@ -253,10 +270,12 @@ func _explodeAndGoOn(owerId : int, mapPos : Vector2, damage : int, direction : V
 	return id == GameConfig.GRASS_TILE_ID
 
 
+# 炸弹炸掉瓦片，远程更新地图
 remotesync func _tileMapChangeTileAt(mapPos : Vector2, tileId : int) -> void:
 	_tileMap.set_cellv(mapPos, tileId)
 
 
+# 远程添加炸弹到场景
 remotesync func _addExplosion(id : int, pos : Vector2, owerId : int, direction : Vector2, tileFrame : int, damage : int, isDisabled : bool, name : String) -> void:
 	var explosion := explosionScene.instance() as Explosion
 	explosion.name = name
@@ -266,7 +285,8 @@ remotesync func _addExplosion(id : int, pos : Vector2, owerId : int, direction :
 	_bombContainer.add_child(explosion)
 
 
-func _spawnEnemies() -> void:
+# 生成敌人
+func _on_EnemySpawnTimer_timeout() -> void:
 	if ! self.get_tree().is_network_server():  # Not master, only server spawns enemies.
 		return
 	
@@ -278,6 +298,7 @@ func _spawnEnemies() -> void:
 		_spawnEnemy()
 
 
+# 生成敌人
 func _spawnEnemy() -> void:
 	var tile : Vector2 = _tileMap.getRandomTile()
 	if tile == Vector2(-1, -1):
@@ -289,6 +310,7 @@ func _spawnEnemy() -> void:
 	self.rpc('_addEnemy', pos, name)
 
 
+# 远程添加敌人
 remotesync func _addEnemy(pos : Vector2, name : String) -> void:
 	var enemy = enemyScene.instance()
 	enemy.name = name
@@ -302,6 +324,3 @@ func _on_SpawnFrequencyTimer_timeout() -> void:
 	if _spawnTimer.wait_time <= 0.5:
 		_frequencyTimer.queue_free()
 
-
-func _on_EnemySpawnTimer_timeout() -> void:
-	_spawnEnemies()

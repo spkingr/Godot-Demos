@@ -24,8 +24,6 @@ var _isPaused := false
 var canSuccess := true
 var path := [] setget __setPath__
 
-puppet var isDead := false
-
 
 func __setPath__(value : Array) -> void:
 	_hasPath = true
@@ -33,7 +31,7 @@ func __setPath__(value : Array) -> void:
 
 
 func _ready() -> void:
-	if ! self.is_network_master():
+	if ! self.get_tree().is_network_server():
 		return
 	
 	yield(_readyTimer, 'timeout')
@@ -41,7 +39,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if ! self.is_network_master():
+	if self.get_tree().network_peer == null || ! self.get_tree().is_network_server():
 		return
 	
 	if _isRepairing:
@@ -75,7 +73,8 @@ func _physics_process(delta: float) -> void:
 		self.rpc_unreliable('_updatePosition', self.position)
 
 
-# why not use puppet? first loaded the game contains an instance, maybe not set the master id
+# Why not use puppet?
+# while first loaded the game contains an instance, maybe not set the master id
 # so remote prefers puppet, I think
 remote func _updatePosition(pos : Vector2) -> void:
 	self.position = pos

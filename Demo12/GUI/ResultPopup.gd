@@ -40,7 +40,6 @@ func showPopup(msg : String, title : String = 'Message', exlusive : bool = false
 	_dialog.popup_exclusive = exlusive
 	_buttonStay.visible = (hidedButtonBits & BUTTON_STAY_BIT) == 0
 	_buttonBack.visible = (hidedButtonBits & BUTTON_BACK_BIT) == 0
-	prints((hidedButtonBits & BUTTON_STAY_BIT), (hidedButtonBits & BUTTON_BACK_BIT))
 	_dialog.popup()
 
 

@@ -1,12 +1,32 @@
 # Godot-Demos
 
+![Godot 3.2](https://img.shields.io/badge/Godot-v3.2-%23478cbf?logo=godot-engine&logoColor=white)
+
 My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
+## Demo12: Godot Game DevLog 1 - making game with high level multiplayer API
+
+文章链接：
+
+- [Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）](http://liuqingwen.me/2020/07/22/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-1/)
+- [Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（下）](http://liuqingwen.me/2020/07/22/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-2/)
+
+*本篇讲解到的知识点：*
+
+1. 局域网多人联网游戏开发介绍
+2. 远程调用基础知识
+3. Godot 中几个重要的关键字
+4. 游戏结构、代码简析
+5. 经验总结
+
+![Demo12](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo12.jpg)
+
+***
 ## Demo11: Introduction of Godot 3 part 15 - several usage examples of RigidBody2D node in games
 
-文章链接： [Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例](http://liuqingwen.me/blog/2019/07/31/introduction-of-godot-3-part-15-several-usage-examples-of-rigidbody2d-node-in-games/)
+文章链接： [Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例](http://liuqingwen.me/2019/07/31/introduction-of-godot-3-part-15-several-usage-examples-of-rigidbody2d-node-in-games/)
 
 *本篇讲解到的知识点：*
 
@@ -21,7 +41,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 ***
 ## Demo10: Introduction of Godot 3 part 14 - Make a game with RigidBody2D node and the FSM introduction
 
-文章链接：[Godot3游戏引擎入门之十四：RigidBody2D刚体节点的应用以及简单的FSM状态机介绍](http://liuqingwen.me/blog/2019/07/20/introduction-of-godot-3-part-14-make-a-game-with-rigidbody2d-node-and-the-fsm-introduction)
+文章链接：[Godot3游戏引擎入门之十四：RigidBody2D刚体节点的应用以及简单的FSM状态机介绍](http://liuqingwen.me/2019/07/20/introduction-of-godot-3-part-14-make-a-game-with-rigidbody2d-node-and-the-fsm-introduction)
 
 *本篇讲解到的知识点：*
 
@@ -38,8 +58,8 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 文章链接：
 
-- [Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（上）](http://liuqingwen.me/blog/2019/01/17/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-1/)
-- [Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（下）](http://liuqingwen.me/blog/2019/01/26/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-2/)
+- [Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（上）](http://liuqingwen.me/2019/01/17/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-1/)
+- [Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（下）](http://liuqingwen.me/2019/01/26/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-2/)
 
 *本篇讲解到的知识点：*
 
@@ -56,7 +76,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 ***
 ## Demo8: Introduction of Godot 3 part 12 - talk about collision and move_and_collide vs move_and_slide in KinematicBody2D
 
-文章链接：[Godot3游戏引擎入门之十二：Godot碰撞理论以及KinematicBody2D的两个方法](http://liuqingwen.me/blog/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/)
+文章链接：[Godot3游戏引擎入门之十二：Godot碰撞理论以及KinematicBody2D的两个方法](http://liuqingwen.me/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/)
 
 *本篇讲解到的知识点：*
 
@@ -71,8 +91,8 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 文章链接：
 
-- [Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上）](http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/)
-- [Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下）](http://liuqingwen.me/blog/2018/12/25/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-2/)
+- [Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上）](http://liuqingwen.me/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/)
+- [Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下）](http://liuqingwen.me/2018/12/25/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-2/)
 
 *本篇讲解到的知识点：*
 
@@ -87,9 +107,9 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 文章链接：
 
-- [Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）](http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/)
-- [Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）](http://liuqingwen.me/blog/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/)
-- [Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（下）](http://liuqingwen.me/blog/2018/12/06/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-3/)
+- [Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）](http://liuqingwen.me/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/)
+- [Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）](http://liuqingwen.me/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/)
+- [Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（下）](http://liuqingwen.me/2018/12/06/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-3/)
 
 *本篇讲解到的知识点：*
 
@@ -101,7 +121,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ## Demo5-3: Introduction of Godot 3 part 9 - add audio effects and UI elements
 
-文章链接：[Godot3游戏引擎入门之九：创建UI界面并添加背景音乐](http://liuqingwen.me/blog/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/)
+文章链接：[Godot3游戏引擎入门之九：创建UI界面并添加背景音乐](http://liuqingwen.me/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/)
 
 *本篇讲解到的知识点：*
 
@@ -114,7 +134,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ## Demo5-2: Introduction of Godot 3 part 8 - add collectable elements and sub-scenes
 
-文章链接：[Godot3游戏引擎入门之八：添加可收集元素和子场景](http://liuqingwen.me/blog/2018/11/02/introduction-of-godot-3-part-8-add-collectable-elements-and-sub-scenes/)
+文章链接：[Godot3游戏引擎入门之八：添加可收集元素和子场景](http://liuqingwen.me/2018/11/02/introduction-of-godot-3-part-8-add-collectable-elements-and-sub-scenes/)
 
 *本篇讲解到的知识点：*
 
@@ -129,7 +149,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ## Demo5-1: Introduction of Godot 3 part 7 - add collision and move player in map
 
-文章链接：[Godot3游戏引擎入门之七：地图添加碰撞体制作封闭的游戏世界](http://liuqingwen.me/blog/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/)
+文章链接：[Godot3游戏引擎入门之七：地图添加碰撞体制作封闭的游戏世界](http://liuqingwen.me/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/)
 
 *本篇讲解到的知识点：*
 
@@ -144,7 +164,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 ***
 ## 5. Introduction of Godot 3 part 6 - make tile map in godot
 
-文章链接：[Godot3游戏引擎入门之六：制作TileMap瓦片地图](http://liuqingwen.me/blog/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/)
+文章链接：[Godot3游戏引擎入门之六：制作TileMap瓦片地图](http://liuqingwen.me/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/)
 
 *本篇讲解到的知识点：*
 
@@ -158,8 +178,8 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 文章链接：
 
-- [Godot3游戏引擎入门之五：上下左右移动动画（上）](http://liuqingwen.me/blog/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/)
-- [Godot3游戏引擎入门之五：上下左右移动动画（下）](http://liuqingwen.me/blog/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/)
+- [Godot3游戏引擎入门之五：上下左右移动动画（上）](http://liuqingwen.me/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/)
+- [Godot3游戏引擎入门之五：上下左右移动动画（下）](http://liuqingwen.me/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/)
 
 *本篇讲解到的知识点：*
 
@@ -174,8 +194,8 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 文章链接：
 
-- [Godot3游戏引擎入门之三：移动我们的主角（上）](http://liuqingwen.me/blog/2018/09/25/introduction-of-godot-3-part-4-add-some-cute-animations-part-1/)
-- [Godot3游戏引擎入门之三：移动我们的主角（下）](http://liuqingwen.me/blog/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/)
+- [Godot3游戏引擎入门之三：移动我们的主角（上）](http://liuqingwen.me/2018/09/25/introduction-of-godot-3-part-4-add-some-cute-animations-part-1/)
+- [Godot3游戏引擎入门之三：移动我们的主角（下）](http://liuqingwen.me/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/)
 
 *本篇讲解到的知识点：*
 
@@ -188,7 +208,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ## Demo2: Introduction of Godot 3 part 3 - move the character with inputs
 
-文章链接：[Godot3游戏引擎入门之三：移动我们的主角](http://liuqingwen.me/blog/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/)
+文章链接：[Godot3游戏引擎入门之三：移动我们的主角](http://liuqingwen.me/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/)
 
 *本篇讲解到的知识点：*
 
@@ -201,7 +221,7 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ## Demo1: Introduction of Godot 3 part 2 - game scene and node
 
-文章链接：[Godot3游戏引擎入门之二：第一个简单的游戏场景](http://liuqingwen.me/blog/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/)
+文章链接：[Godot3游戏引擎入门之二：第一个简单的游戏场景](http://liuqingwen.me/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/)
 
 *本篇讲解到的知识点：*
 
@@ -216,4 +236,4 @@ Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 ***
 
 > 欢迎关注我的微信公众号：
-![IT自学不成才](http://liuqingwen.me/blog/images/wexin_2.jpg)
+![IT自学不成才](http://liuqingwen.me/images/wexin_2.jpg)

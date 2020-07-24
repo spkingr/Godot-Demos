@@ -33,8 +33,8 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("DamageArea")
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -42,13 +42,11 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
+"update": 1,
+"values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/path = NodePath("DamageArea/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -119,7 +117,6 @@ moveSpeed = 60.0
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 7
-frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

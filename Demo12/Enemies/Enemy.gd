@@ -20,7 +20,7 @@ var _nextPosition := Vector2.ZERO
 
 
 func _ready() -> void:
-	if ! self.is_network_master():
+	if self.get_tree().network_peer == null || ! self.is_network_master():
 		return
 	
 	self.position = self.position.snapped(GameConfig.TILE_HALF_SIZE_VECTOR)
@@ -89,7 +89,7 @@ func _disableCheckers(disabled : bool = true) -> void:
 
 
 func _physics_process(delta):
-	if ! self.is_network_master():
+	if self.get_tree().network_peer == null || ! self.is_network_master():
 		return
 	
 	if _isDead || _isPaused:
@@ -112,7 +112,7 @@ func _physics_process(delta):
 
 
 func _process(delta: float) -> void:
-	if ! self.is_network_master():
+	if self.get_tree().network_peer == null || ! self.is_network_master():
 		return
 	
 	if _isDead || _isPaused:
@@ -148,8 +148,6 @@ func _dead() -> void:
 	var type := GameConfig.produceItemIndex()
 	var pos := self.global_position
 	self.rpc('_dieAndSpawnItem', 1, type, pos, self.name + 'item')
-	
-	assert(GameState.myId == 1, 'Only the server can respawn enemy items.')
 	
 
 remotesync func _dieAndSpawnItem(id : int, type : int, pos : Vector2, name : String) -> void:

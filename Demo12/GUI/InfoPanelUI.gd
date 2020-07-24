@@ -55,10 +55,10 @@ func _sendMessage() -> void:
 
 
 func _on_NewMessage_arrive(bbcodeMessage : String) -> void:
-#	self.rpc('_remoteAppendMessage', bbcodeMessage)
 	_remoteAppendMessage(bbcodeMessage)
 
 
+# no need to use remotesync
 remotesync func _remoteAppendMessage(msg : String) -> void:
 	_labelInfo.newline()
 	_labelInfo.append_bbcode(msg)

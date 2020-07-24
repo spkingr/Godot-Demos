@@ -66,6 +66,7 @@ func _ready() -> void:
 	randomize()
 
 
+# 随机创建掉落的物品，返回的items中的下标index
 func produceItemIndex() -> int:
 	var index := 0
 	var probability := randf()
@@ -77,12 +78,14 @@ func produceItemIndex() -> int:
 	return index
 
 
+# 返回到主场景，删除网络信息
 func backToMainScene() -> void:
 	self.get_parent().get_node(@'/root/Game').queue_free()
 	self.get_tree().change_scene(LobbyScene)
 	GameState.resetNetwork()
 
 
+# 远程发送消息
 remote func sendMessage(type : int, playerID : int, content : String) -> void:
 	content = content.strip_edges()
 	if content.empty():
