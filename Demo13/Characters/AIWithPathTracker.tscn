@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Characters/AIBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/AIWithPathTracker.gd" type="Script" id=2]
+[ext_resource path="res://Assets/SpriteAsset.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 256.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 16 )
+
+[node name="AIWithPathTracker" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="ScanArea" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 20, 32 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 2 )
+
+[node name="LabelName" parent="." index="3"]
+text = "Path Tracker AI"
+
+[node name="TrackTimer" type="Timer" parent="." index="4"]
+
+[node name="RayCastTarget" type="RayCast2D" parent="." index="5"]
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="RayCastStatic" type="RayCast2D" parent="." index="6"]
+enabled = true
+cast_to = Vector2( 50, 0 )
+[connection signal="timeout" from="TrackTimer" to="." method="_on_TrackTimer_timeout"]

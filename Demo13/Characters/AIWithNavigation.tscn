@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Characters/AIBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/AIWithNavigation.gd" type="Script" id=2]
+[ext_resource path="res://Assets/SpriteAsset.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 256.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 14, 10 )
+
+[node name="AIWithNavigation" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="ScanArea" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 48, 36, 20, 28 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="LabelName" parent="." index="3"]
+text = "Navigation AI"
