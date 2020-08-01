@@ -6,6 +6,18 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
+## Demo13: Godot Game DevLog 2 - introduce a new AI path finding method
+
+文章链接： [Godot游戏开发实践之二：AI之寻路新方式](http://liuqingwen.me/2020/08/01/godot-game-devLog-2-introduce-a-new-AI-path-finding-method/)
+
+*本篇讲解到的知识点：*
+
+1. AI 寻路的几种方式
+2. 场景结构继承等简单介绍
+
+![Demo13](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo13.gif)
+
+***
 ## Demo12: Godot Game DevLog 1 - making game with high level multiplayer API
 
 文章链接：

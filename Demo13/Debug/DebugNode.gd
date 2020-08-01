@@ -18,10 +18,15 @@ var path := [] # Vector2
 var rays := [] # {'start': Vector2, 'end': Vector2, 'enabled': bool, 'collided': bool}
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed('toggle_debug'):
+		enableDebug = ! enableDebug
+
+
 func _process(delta: float) -> void:
 	if enableDebug:
 		self.update()
-	else:
+	elif ! path.empty() || ! rays.empty():
 		path.clear()
 		rays.clear()
 		self.update()
@@ -72,9 +77,9 @@ func _drawRays(rays : Array) -> void:
 		else:
 			var start = ray['start']
 			var end = start + (ray['end'] - start) * rayLenMultiplier
-			if ! ray['enabled']:
+			if ray['enabled'] == false:
 				color = rayDisabledColor
-			elif ray['collided']:
+			elif ray['collided'] == true:
 				color = rayCollisionColor
 			self.draw_line(start, end, color, size)
 

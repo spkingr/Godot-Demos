@@ -87,7 +87,7 @@ region_rect = Rect2( 24, 40, 24, 24 )
 shape = SubResource( 5 )
 
 [node name="AIWithNavigation" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1497, 245 )
+position = Vector2( 1355, 197 )
 debugNodePath = NodePath("DebugNode")
 navigationNodePath = NodePath("..")
 

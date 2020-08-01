@@ -50,8 +50,7 @@ func _findMoveDirection(delta : float, target : Node2D) -> Vector2:
 # 更新射线碰撞状态、射线比重
 func _updateRays(delta : float, targetDir : Vector2, moveDir : Vector2) -> void:
 	var state := self.get_world_2d().direct_space_state
-	for r in _rays:
-		var ray : Ray = r
+	for ray in _rays:
 		# 使用 world space state 发射射线检测是否碰撞
 		var collision := state.intersect_ray(self.global_position, self.global_position + ray.dir * ray.length, [], 0x1)
 		if collision:
