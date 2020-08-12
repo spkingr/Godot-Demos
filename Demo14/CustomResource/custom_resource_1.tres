@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://CustomResource/CustomResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+variable1 = "string1"
+variable2 = 123
+variable3 = Vector2( 12, 34 )
+variable4 = [ true, 0.5 ]

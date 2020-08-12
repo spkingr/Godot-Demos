@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://CustomResource/CustomResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+variable1 = "string2"
+variable2 = 666
+variable3 = Vector2( 1, 2 )
+variable4 = [ "abc", Color( 1, 0, 0, 1 ), false ]

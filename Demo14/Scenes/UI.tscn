@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/UI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/default_theme.tres" type="Theme" id=2]
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_bottom = 1.0
+rect_min_size = Vector2( 400, 0 )
+mouse_filter = 2
+bbcode_enabled = true
+bbcode_text = "Information:"
+text = "Information:"
+__meta__ = {
+"_edit_use_anchors_": false
+}

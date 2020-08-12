@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
+[ext_resource path="res://CustomResource/custom_resource_1.tres" type="Resource" id=2]
+[ext_resource path="res://CustomResource/custom_resource_2.tres" type="Resource" id=3]
+[ext_resource path="res://Scenes/CustomResourceScene.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://DataResource/fast_player_resource.tres" type="Resource" id=6]
+[ext_resource path="res://DataResource/slow_player_resource.tres" type="Resource" id=7]
+[ext_resource path="res://DataResource/medium_player_resource.tres" type="Resource" id=8]
+[ext_resource path="res://EventResource/message_event.tres" type="Resource" id=9]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Item.tscn" type="PackedScene" id=11]
+[ext_resource path="res://EventResource/trigger_event.tres" type="Resource" id=12]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 ringColor : hint_color = vec4(1.);
+uniform float ringSize = .1;
+uniform float timeScale = 1.;
+uniform float crossSize = 0.02;
+
+float drawRing(vec2 uv, float radius, float width, float blur){
+	float dis = length(uv);
+	float mask = smoothstep(radius, radius + blur, dis);
+	mask -= step(radius + width, dis);
+	return mask;
+}
+
+float drawCross(vec2 uv, float size){
+	float mask1 = 1. - step(size * .5, uv.y);
+	mask1 *= step(-size * .5, uv.y);
+	float mask2 = 1. - step(size * .5, uv.x);
+	mask2 *= step(-size * .5, uv.x);
+	float mask = mask1 + mask2;
+	return mask;
+}
+
+void fragment(){
+	vec2 uv = UV - .5;
+	float radius = 0.1 * (sin(TIME * timeScale) * 0.5 + 0.5) + .15;
+	float r = drawRing(uv, radius, ringSize, 0.01);
+	float c = drawCross(uv, crossSize);
+	COLOR = ringColor * min(1., c + r);
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/ringColor = Color( 1, 1, 1, 1 )
+shader_param/ringSize = 0.08
+shader_param/timeScale = 5.0
+shader_param/crossSize = 0.02
+
+[node name="Main" type="YSort"]
+script = ExtResource( 1 )
+
+[node name="CustomResourceScene" parent="." instance=ExtResource( 4 )]
+customResource1 = ExtResource( 2 )
+customResource2 = ExtResource( 3 )
+customResource3 = ExtResource( 3 )
+
+[node name="Players" type="YSort" parent="."]
+
+[node name="Player1" parent="Players" instance=ExtResource( 5 )]
+position = Vector2( 494.71, 225.949 )
+playerData = ExtResource( 6 )
+messageEvent = ExtResource( 9 )
+
+[node name="Player2" parent="Players" instance=ExtResource( 5 )]
+position = Vector2( 494.71, 331.789 )
+playerData = ExtResource( 7 )
+
+[node name="Player3" parent="Players" instance=ExtResource( 5 )]
+position = Vector2( 494.71, 115.353 )
+playerData = ExtResource( 8 )
+triggerEvent = ExtResource( 12 )
+
+[node name="Items" type="YSort" parent="."]
+
+[node name="Item1" parent="Items" instance=ExtResource( 11 )]
+position = Vector2( 940, 539 )
+triggerEvent = ExtResource( 12 )
+
+[node name="Item2" parent="Items" instance=ExtResource( 11 )]
+position = Vector2( 1425, 539 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 10 )]
+messageEvent = ExtResource( 9 )
+triggerEvent = ExtResource( 12 )
+
+[node name="Cross" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 2 )
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+mouse_filter = 2
+color = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}

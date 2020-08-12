@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://DataResource/DataResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Fast"
+imageSrc = "res://Assets/tortoise_blue.png"
+moveSpeed = 300.0
+turningSpeed = 10.0
+minStopDistance = 100.0

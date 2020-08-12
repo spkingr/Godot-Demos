@@ -1,0 +1,85 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "CustomResource",
+"language": "GDScript",
+"path": "res://CustomResource/CustomResource.gd"
+}, {
+"base": "Resource",
+"class": "DataResource",
+"language": "GDScript",
+"path": "res://DataResource/DataResource.gd"
+}, {
+"base": "Resource",
+"class": "EventResource",
+"language": "GDScript",
+"path": "res://EventResource/EventResource.gd"
+} ]
+_global_script_class_icons={
+"CustomResource": "res://CustomResource/custom_icon.svg",
+"DataResource": "res://DataResource/data_icon.svg",
+"EventResource": "res://EventResource/event_icon.svg"
+}
+
+[application]
+
+config/name="Demo14"
+run/main_scene="res://Scenes/Main.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+shapes/navigation/geometry_color=Color( 0.101961, 1, 0.701961, 0.4 )
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/dpi/allow_hidpi=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
+[input]
+
+move={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[rendering]
+
+environment/default_clear_color=Color( 0.192157, 0.337255, 0.556863, 1 )
+environment/default_environment="res://default_env.tres"
