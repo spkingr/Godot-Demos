@@ -6,6 +6,20 @@ My godot learning tutorials and blog articles, demos.
 Find more at my blog: [http://liuqingwen.me](http://liuqingwen.me)
 
 ***
+## Demo14: Godot Game DevLog 3 - introduce a new AI path finding method
+
+文章链接： [Godot游戏开发实践之三：容易被忽视的Resource](http://liuqingwen.me/2020/08/17/godot-game-devLog-3-talk-about-resource/)
+
+*本篇讲解到的知识点：*
+
+1. Resource 的创建与使用
+2. Resource 相关问题与局限
+3. Resource 应用之一：数据容积
+4. Resource 应用之二：全局事件模式
+
+![Demo14](https://github.com/spkingr/Godot-Demos/raw/master/Images/demo14.jpg)
+
+***
 ## Demo13: Godot Game DevLog 2 - introduce a new AI path finding method
 
 文章链接： [Godot游戏开发实践之二：AI之寻路新方式](http://liuqingwen.me/2020/08/01/godot-game-devLog-2-introduce-a-new-AI-path-finding-method/)
